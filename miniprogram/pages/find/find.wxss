@@ -1,0 +1,105 @@
+/* miniprogram/pages/find/find.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.findContain{
+  height: 100%;
+}
+.search{
+  width: 95%;
+  height: 68rpx;
+  line-height: 68rpx;
+  margin: 20rpx auto;
+  color: #666;
+  background: #f1f1f1;
+  border-radius: 7rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+.search text{
+  font-size: 30rpx;
+}
+swiper{
+  width: 96%;
+  height:240rpx;
+  margin: 20rpx auto;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+swiper image{
+  width: 100%;
+}
+.findBlock{
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 20rpx solid #f2f2f2;
+}
+.findBlock view{
+  width: 20%;
+  text-align: center;
+  margin: 16rpx 0;
+}
+.findBlock view .icon{
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 50%;
+  margin: 0 auto 10rpx;
+}
+.findBlock view .icon text{
+  color: #fff;
+  font-size: 40rpx;
+}
+.findBlock view text{
+  display: block;
+  font-size: 28rpx;
+  color: #555;
+}
+.circleList{
+  width: 100%;
+
+}
+.circleList>view{
+  display: -webkit-flex;
+  display: flex;
+  border-bottom:2rpx solid #eee;
+  width: 98%;
+  margin-left: 2%;
+}
+.circleList>view .introInfo{
+  flex:1;
+  margin: 20rpx 0;
+}
+.circleList>view .introInfo text{
+  font-size: 28rpx;
+  letter-spacing: 2rpx;
+}
+.circleList>view .introInfo .title{
+  font-size: 36rpx;
+}
+.circleList>view .introInfo .person{
+  font-size: 28rpx;
+  color:#666;
+}
+.circleList>view .introInfo .desc{
+  background: #fff7f4;
+  color: #fc713e;
+  padding: 4rpx 8rpx;
+  border:2rpx solid #ffa98a;
+  border-radius: 5rpx;
+}
+.circleList view .imgInfo{
+  width: 280rpx;
+  height: 160rpx;
+  margin: 20rpx;
+  border:2rpx solid #eee;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+.circleList view .imgInfo image{
+  width: 100%;
+  height: 100%;
+}

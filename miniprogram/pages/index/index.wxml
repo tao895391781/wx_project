@@ -1,0 +1,8 @@
+
+<view class='imgView'>
+  <open-data type="userAvatarUrl" class='img'></open-data>
+</view>
+<open-data type="userNickName" class='name'></open-data>
+<!-- 需要使用 button 来授权登录 -->
+<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" type="primary">授权登录</button>
+<view wx:else>请升级微信版本</view>

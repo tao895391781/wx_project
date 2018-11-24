@@ -1,0 +1,29 @@
+<!--miniprogram/pages/my/my.wxml-->
+<view class="section">
+      <scroll-view class='mys' 
+        style="height:{{scrollHeight}}" scroll-y='{{true}}' upper-threshold = '50'
+        bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" 
+         scroll-top="{{scrollTop}}">
+    <!-- 我的页面头部 -->
+    <view class='header'>
+        <view class='image'>
+          <image src='{{userInfo.avatarUrl}}'></image>
+        </view>
+        <view class='name'>
+          <text>{{userInfo.nickName}}\n用户ID:123445</text>
+        </view>
+        <view class='seeMain'>
+          <text>查看我的主页\t></text>
+        </view>
+    </view>
+    <!-- 我的页面--我的操作 -->
+    <view class='myTable'>
+        <view wx:for='{{myTable}}' wx:for-item="i" wx:key='{{index}}'>
+            <view style='background-color:{{i.color}}'>
+                <text class='iconfont {{i.icon}}'></text>
+            </view>
+            <text>{{i.title}}</text>
+        </view>
+    </view>
+    </scroll-view>
+</view>

@@ -1,0 +1,22 @@
+.imgView{
+  width:200rpx;
+  height:200rpx;
+  border-radius: 100rpx;
+  overflow: hidden;
+  margin: 200rpx auto 50rpx;
+}
+.img{
+  width:100%;
+  height:100%;
+  display: block;
+}
+.name{
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+button{
+  margin-top: 100rpx;
+  width: 90%;
+  background: 
+}

@@ -1,0 +1,10 @@
+/**app.wxss**/
+@import 'style/iconfont.wxss';
+@import 'style/common.wxss'
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+} 
