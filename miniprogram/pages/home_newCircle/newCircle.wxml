@@ -1,6 +1,8 @@
 <!--miniprogram/pages/newCircle/newCircle.wxml-->
-<import src="../../template/showToast.wxml" />
+<import src="../../template/showToast/showToast.wxml" />
+<import src="../../template/mask/mask.wxml" />
 <template is="showToast" data="{{showToast: showToast}}" />
+<template is="mask" data="{{showMask:showMask}}" />
 <view class='newcircle' wx-if="{{showCircle}}">
     <view class='h1'>
       <text>创建自己的圈子</text>
@@ -25,6 +27,7 @@
   <view class='header'>
     <text>点击展开分类，最多可以添加3个标签</text>
   </view>
+  <view class='selectBox'>
    <view wx:for='{{selectCircleData}}' 
           class='select'
           wx:key="{{index}}">
@@ -41,10 +44,10 @@
                       wx:for-item="item_">{{item_.value}}<block>{{' '}}</block></text>
             </view>
             <view class='jiantou'>
-                <block wx:if="{{!ctrShowList[index]}}">
+                <block wx:if="{{!selectCircleData[index].ctrShow}}">
                     <text class='iconfont icon-xiajiantou'></text>
                 </block>
-                <block wx:if="{{ctrShowList[index]}}">
+                <block wx:if="{{selectCircleData[index].ctrShow}}">
                     <text class='iconfont icon-shangjiantou'></text>
                 </block>
             </view>
@@ -60,12 +63,25 @@
                     data-flag = '{{items.flag}}'
                     class="{{items.flag?'checkeds':''}}">{{items.value}}</view> 
             </view>
+        </view>
     </view>
+     <view class='selfTags'>
+          <view class='headTags'>
+              <text>填写自定义标签</text>
+          </view>
+          <view class='inputSelf'><input placeholder="最多输入十五个字"
+           placeholder-style="{{holdplace}}" /></view>
+          <view class='selfBtn'>
+               <view bindtap="cancleSelf">取消</view>   
+               <view bindtap="sureSelf">确定</view>   
+          </view>
+      </view>
     <view  class='nextStep'>
         <button
           type="primary"
+          class='{{disabled ? "disabledSelect":""}}'
           disabled="{{disabled}}"
-          bindtap="nextStep">
+          bindtap="nextSteps">
           下一步
           </button>
     </view>

@@ -1,0 +1,7 @@
+<template name='mask'>
+    <block>
+        <view class='mask_' wx:if='{{showMask}}'>
+
+        </view>
+    </block>
+</template>

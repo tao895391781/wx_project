@@ -1,7 +1,8 @@
 /**app.wxss**/
 @import 'style/iconfont.wxss';
 @import 'style/common.wxss';
-@import "template/showToast.wxss";
+@import "template/showToast/showToast.wxss";
+@import "template/mask/mask.wxss"
 .container {
   display: flex;
   flex-direction: column;

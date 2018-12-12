@@ -73,6 +73,9 @@ page{
   letter-spacing: 2rpx;
   margin:20rpx 0;
 }
+.selectCircle .selectBox{
+  padding-bottom: 120rpx;
+}
 .selectCircle .select .title{
   line-height: 150rpx;
   height: 150rpx;
@@ -142,16 +145,56 @@ page{
   left: 0;
   bottom: 0;
   background: #fff;
+  box-shadow: -2px -2px 2px #eee;
 }
 .selectCircle .nextStep button{
   width:94%;
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   font-size: 40rpx;
   color: #fff;
-  margin: 10rpx 3%;
+  margin: 15rpx 3%;
   background: #1daca9;
   border-radius: 0;
   letter-spacing: 4rpx;
-  
 }
+.selectCircle .nextStep .disabledSelect{
+  background: rgba(29,172,169,.5);
+}
+.selectCircle .selfTags{
+  position: fixed;
+  width:90%;
+  /* height: 250rpx; */
+  background: #fff;
+  left:5%;
+  top:40%;
+  z-index: 1000;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius: 10rpx;
+}
+.selectCircle .selfTags .headTags{
+  line-height: 100rpx;
+  text-align: center;
+  color:#000;
+  letter-spacing: 2rpx;
+}
+.selectCircle .selfTags .inputSelf{
+  width: 90%;
+  height: 70rpx;
+  border:2rpx solid #eee;
+  margin: 10rpx auto;
+}
+.selectCircle .selfTags .inputSelf input{
+  height: 100%;
+}
+.selectCircle .selfTags .selfBtn view{
+  width: 50%;
+  float: left;
+  text-align: center;
+  line-height: 85rpx;
+  margin-top: 30rpx;
+  font-size: 32rpx;
+  border-top: 2rpx solid #eee;
+}
+

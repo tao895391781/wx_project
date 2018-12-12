@@ -1,6 +1,7 @@
 // miniprogram/pages/newCircle/newCircle.js
 //控制圈子分类选择标签
-const ToastFun = require('../../template/showToast.js')
+const ToastFun = require('../../template/showToast/showToast.js')
+const showmasks = require('../../template/mask/mask.js')
 Page({
   /**
    * 页面的初始数据
@@ -18,7 +19,7 @@ Page({
     flag:true,
     ctrShowList:[],
     ctrOptionList:[],
-    disabled: false,
+    disabled: true,
     showToast: {
       duration:1000,
       isShow:false,
@@ -26,7 +27,9 @@ Page({
       icon:'',
       mask:false
     },
+    showMask:true,
     threeMore:0,
+    holdplace:"text-indent:1em;line-height: 70rpx;font-size: 32rpx"  
   },
 
   /**
@@ -87,22 +90,27 @@ Page({
   // 控制 新建圈子的下的标签显示与隐藏
   showOption:function(event){
     let index = event.currentTarget.dataset.index;
-    let ctrShowlist = [].concat(this.data.selectCircleData)
-    if (!this.data.selectCircleData[index].ctrShow){
-      ctrShowlist.map(v=> {
-        v.ctrShow = false;
-      });
-      ctrShowlist[index].ctrShow = true;
-      console.log(ctrShowlist)
-      this.setData({
-        selectCircleData: ctrShowlist
-      });
+    if (this.data.selectCircleData[index].options.length == 0){
+      console.log('这是自定义标签');
+      showmasks.controlMaskShow(true)
     }else{
-      ctrShowlist.map(v =>v.ctrShow = false);
-      this.setData({
-        selectCircleData: ctrShowlist
-      });
-    };
+      let ctrShowlist = [].concat(this.data.selectCircleData);
+      if (!this.data.selectCircleData[index].ctrShow) {
+        ctrShowlist.map(v => {
+          v.ctrShow = false;
+        });
+        ctrShowlist[index].ctrShow = true;
+        console.log(ctrShowlist)
+        this.setData({
+          selectCircleData: ctrShowlist
+        });
+      } else {
+        ctrShowlist.map(v => v.ctrShow = false);
+        this.setData({
+          selectCircleData: ctrShowlist
+        });
+      };
+    }
   },
   checkOption:function(e){
     let index = e.currentTarget.dataset.index;
@@ -110,6 +118,7 @@ Page({
     let thisIndex = 'selectCircleData['+index+'].options['+indexs+'].flag';
     let that = this;
     let i = this.data.threeMore;
+
     if (!this.data.selectCircleData[index].options[indexs].flag) {
         if (this.data.threeMore>2){
           this.setData({
@@ -131,6 +140,16 @@ Page({
       });
     };
     console.log(this.data.selectCircleData);
+    console.log(this.data.threeMore);
+    if (this.data.threeMore == 0){
+      this.setData({
+        disabled: true
+      })
+    }else{
+      this.setData({
+        disabled: false
+      })
+    }
   },
   filterselectOpt:function(lists){
       
@@ -173,7 +192,8 @@ Page({
     }); 
   },
   // 选完标签进行下一步
-  nextStep: function(){
+  nextSteps: function(){
+      console.log('选完标签下一步');
 
   },
   onPullDownRefresh: function () {
