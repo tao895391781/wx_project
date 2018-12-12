@@ -62,7 +62,7 @@ swiper image{
   width: 100%;
 
 }
-.circleList>view{
+.circleList .itemList{
   display: -webkit-flex;
   display: flex;
   border-bottom:2rpx solid #eee;
@@ -102,4 +102,18 @@ swiper image{
 .circleList view .imgInfo image{
   width: 100%;
   height: 100%;
+}
+.circleList .loading{
+  height: 56rpx;
+  text-align: center;
+  line-height: 56rpx;
+}
+.circleList .loading text{
+  color: #333;
+  font-size: 36rpx;
+}
+.circleList .loading .load{
+  font-size: 38rpx;
+  /* color: #9e9e9e; */
+  display: inline-block;
 }

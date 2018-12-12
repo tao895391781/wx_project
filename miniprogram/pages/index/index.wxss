@@ -15,8 +15,16 @@
   display: block;
   text-align: center;
 }
+.tips{
+  margin-top: 40rpx;
+}
+.tips text{
+    display: block;
+    text-align: center;
+    font-size: 32rpx;
+    color: #666;
+}
 button{
-  margin-top: 100rpx;
+  margin-top: 80rpx;
   width: 90%;
-  background: 
 }
