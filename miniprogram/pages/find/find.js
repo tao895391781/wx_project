@@ -10,6 +10,8 @@ Page({
     circular:true,
     interval:5000,
     duration:500,
+    scrollHeight: '',
+    scrollTop: 50,
     imgUrls: [],
     findblock:[{
         title:'推荐',
@@ -53,13 +55,29 @@ Page({
         color: '#46dddd'
       }],
       circleList:[],
+      requestNum:0,
+      circleListLength:0,
+      ifFirstBottom:0,
+      loading:'../../imags/loading/loading.png',
+    showLoading:false,
+    animationData:{},
+    timer:0,
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(this)
     let that = this;
+    const app = getApp();
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          scrollHeight: res.windowHeight + 'px'
+        })
+      },
+    });
     //获取发现页面--banner图
     wx.cloud.getTempFileURL({
       fileList: ['cloud://depend-efd532.6465-depend-efd532/imgs/t012bbb99f4f21b995b.jpg',
@@ -85,14 +103,7 @@ Page({
       fail: console.error
     });
     //获取发现页--圈子列表
-    const db = wx.cloud.database();
-    db.collection('find').limit(10).get().then(res=>{
-      console.log(res);
-      this.setData({
-        circleList:res.data
-      })
-    });
-  
+    this.requestcircleListData(this.data.requestNum)
   },
 
   /**
@@ -126,17 +137,91 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
+  //获取发现页--圈子列表
+  requestcircleListData:function(requestNum,lower){
+    console.log(this.data.showLoading)
+    wx.cloud.callFunction({
+      name: 'findData',
+      data: {
+        //每次取下十个数据
+        m: requestNum,
+      },
+      success: res => {
+        console.log(res);
+        if(lower == 'lower'){
+          wx.stopPullDownRefresh()
+        }
+        this.setData({
+          circleListLength:res.result.total.total
+        })
+        let circleList = this.data.circleList;
+        let imgIds = [];
+        res.result.data.data.forEach(v => {
+          imgIds.push(v.imgId);
+        });
+        //图片地址改为链接形式
+        wx.cloud.getTempFileURL({
+          fileList: imgIds,
+          success: res1 => {
+            res.result.data.data.forEach((v, index) => {
+              v.imgId = res1.fileList[index].tempFileURL;
+            });
+            this.setData({
+              circleList: circleList.concat(res.result.data.data)
+            });
+          }
+        });
+        this.setData({
+          circleList: circleList.concat(res.result.data.data)
+        });
+        this.setData({
+          showLoading: false
+        });
+        this.createAnimations(0,'init')
+      }, fail: err => {
+        console.log(err)
+      }
+    });
+  },
   onPullDownRefresh: function () {
-
+    console.log('下拉更新数据');
+    this.data.requestNum = 0;
+    this.setData({
+      circleList: []
+    });
+    this.requestcircleListData(this.data.requestNum,'lower');
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
+  //上拉加载圈子列表--一次加载10条
   onReachBottom: function () {
-
+    if (this.data.circleList.length == this.data.circleListLength) return;
+    console.log('上拉加载');
+    this.setData({
+      showLoading: true,
+    });
+    this.createAnimations(1800,'load')
+    this.requestcircleListData(this.data.requestNum += 10)
   },
+  scrolltolower(){
+    console.log(到底部了)
+  },
+//创建加载旋转动画
+createAnimations:function(value,type){
+  setInterval(function(){
+    let option = { duration: 5000 };
+      let animationDatas = wx.createAnimation(option);
+      this.animation = animationDatas;
+      animationDatas.rotate(value).step();
+      this.setData({
+        animationData: animationDatas.export()
+      })
+  }.bind(this),50)
 
+
+},
   /**
    * 用户点击右上角分享
    */

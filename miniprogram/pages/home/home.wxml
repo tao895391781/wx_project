@@ -1,2 +1,22 @@
 <!--miniprogram/pages/home/home.wxml-->
+<scroll-view scroll-x class='header' style='width:{{scrollWidth}}'>
+    <view class='mycircles'>
+        <view class='myCircle'>
+          <view bindtap='newCircle'>
+              <text class='iconfont icon-jia'></text>
+              <text class='text'>新建圈子</text>
+          </view>
+        </view>
+    </view>
+    <view wx:for="{{homeCircleList}}" wx:key="{{index}}" class='circle1' 
+    style='background-image:url("{{item.bgImg}}")'>
+        <text>
+          {{item.name}}
+        </text>
+        <view class='card'>
+            <text class='cardText'>去打卡</text>
+            <text class='iconfont icon-wodedangxuan icon' wx:if='{{item.isCreateMyself}}'></text>
+        </view>
+    </view>
+</scroll-view>
 

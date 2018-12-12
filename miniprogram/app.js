@@ -5,13 +5,11 @@ App({
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
+      console.log('初始化')
       wx.cloud.init({
         traceUser: true,
       })
     }
-    wx.login({
-      success(res) {
-        console.log(res)
         wx.getUserInfo({
           success:function(res){
             console.log(res);
@@ -23,8 +21,6 @@ App({
             that.globalData.userInfo = res.userInfo;
           },
         })
-      }
-    })
     this.globalData = {
       userInfo:{},
     }

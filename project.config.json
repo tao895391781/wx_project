@@ -2,15 +2,17 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"appid": "wxce803e6ed61ee6fa",
 	"projectname": "tll_WXxcx",
 	"libVersion": "2.2.5",
+	"compileType": "miniprogram",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -28,13 +30,24 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
 					"name": "db guide",
 					"pathName": "pages/databaseGuide/databaseGuide",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "quanzi",
+					"pathName": "pages/home_newCircle/newCircle",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "showToast",
+					"pathName": "pages/showtoast/showtoast"
 				}
 			]
 		}

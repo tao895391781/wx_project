@@ -1,0 +1,72 @@
+<!--miniprogram/pages/newCircle/newCircle.wxml-->
+<import src="../../template/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
+<view class='newcircle' wx-if="{{showCircle}}">
+    <view class='h1'>
+      <text>创建自己的圈子</text>
+    </view>
+    <view class='inputNext'>
+        <view class='input'>
+            <input value='{{valueText}}'  placeholder='给你的圈子起个好听的名字吧' 
+            placeholder-class='textHolderplace'
+            bindinput='inputValues'
+            ></input>
+        </view>
+        <button class='next'
+        style='background:{{bgc}};color:{{color}}' 
+         bindtap='nextStep'
+         disabled='{{BtnDisabled}}'>下一步</button>
+    </view>
+     <switch bindchange="switch1Change" color='{{switchColor}}'/>
+     <text class='openScrict'>开启私密，邀请别人才能参加</text>
+</view>
+<!-- 选择圈子的类型 -->
+<view class='selectCircle' wx-if="{{!showCircle}}">
+  <view class='header'>
+    <text>点击展开分类，最多可以添加3个标签</text>
+  </view>
+   <view wx:for='{{selectCircleData}}' 
+          class='select'
+          wx:key="{{index}}">
+        <view class='title' bindtap='showOption' data-index='{{index}}' data-item='{{item}}'>
+            <view class='icon' style="background:{{item.color}}">
+              <text class='iconfont {{item.icon}}'></text>
+            </view>
+            {{item.title}}
+            <view class='selectOPtions'>
+                <text wx:for='{{item.options}}' 
+                      wx:key="{{index_}}" 
+                      wx:for-index="index_"
+                      wx:if="{{item_.flag}}"
+                      wx:for-item="item_">{{item_.value}}<block>{{' '}}</block></text>
+            </view>
+            <view class='jiantou'>
+                <block wx:if="{{!ctrShowList[index]}}">
+                    <text class='iconfont icon-xiajiantou'></text>
+                </block>
+                <block wx:if="{{ctrShowList[index]}}">
+                    <text class='iconfont icon-shangjiantou'></text>
+                </block>
+            </view>
+        </view>
+            <view class='options' wx:if='{{selectCircleData[index].ctrShow}}'>
+              <view wx:for="{{item.options}}" 
+                    wx:for-item="items"
+                    wx:for-index="indexs"
+                    wx:key="{{indexs}}" 
+                    bindtap='checkOption'
+                    data-index='{{index}}'
+                    data-indexs="{{indexs}}"
+                    data-flag = '{{items.flag}}'
+                    class="{{items.flag?'checkeds':''}}">{{items.value}}</view> 
+            </view>
+    </view>
+    <view  class='nextStep'>
+        <button
+          type="primary"
+          disabled="{{disabled}}"
+          bindtap="nextStep">
+          下一步
+          </button>
+    </view>
+</view>
