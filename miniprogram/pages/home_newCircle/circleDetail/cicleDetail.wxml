@@ -1,0 +1,21 @@
+<!-- created BY tll to  2018/12/12 -->
+<view class='circleDetail'>
+  <view class='header'>
+    <image src='{{headImg}}' mode='scaleToFill'></image>
+  </view>
+  <view class='circleName'>
+      <text>{{circleInfo.title}}</text><text class='iconfont icon-tuijian'></text>
+      <view>
+        <text class='headImg'><image src="{{userInfo.avatarUrl}}"></image></text>
+        <text>{{userInfo.nickName}}</text>
+        <text>等1人已参加</text>
+        <text>|</text>
+        <text>0次打卡</text>
+      </view>
+  </view>
+  <view class='circleIntro'></view>
+  <view class='circleHostIntro'></view>
+  <view class='circleType'></view>
+  <view class='setSignUpTip'></view>
+  <view class='setContract'></view>
+</view>

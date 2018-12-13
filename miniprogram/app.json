@@ -6,7 +6,8 @@
     "pages/my/my",
     "pages/home/home",
     "pages/my_Homepage/my_Homepage",
-    "pages/home_newCircle/newCircle"
+    "pages/home_newCircle/newCircle",
+    "pages/home_newCircle/circleDetail/cicleDetail"
   ],
   "tabBar": {
     "fontSize": "19rpx",

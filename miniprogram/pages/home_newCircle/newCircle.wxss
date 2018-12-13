@@ -171,7 +171,7 @@ page{
   z-index: 1000;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  border-radius: 10rpx;
+  border-radius: 20rpx;
 }
 .selectCircle .selfTags .headTags{
   line-height: 100rpx;
@@ -187,14 +187,24 @@ page{
 }
 .selectCircle .selfTags .inputSelf input{
   height: 100%;
+  width: 100%;
+  padding:0 40rpx;
+  font-size: 32rpx;
 }
 .selectCircle .selfTags .selfBtn view{
   width: 50%;
   float: left;
   text-align: center;
-  line-height: 85rpx;
-  margin-top: 30rpx;
-  font-size: 32rpx;
+  line-height: 95rpx;
+  margin-top: 40rpx;
+  font-size: 34rpx;
   border-top: 2rpx solid #eee;
+  box-sizing: border-box;
+  color: #1daca9;
+  letter-spacing: 2rpx;
+}
+.selectCircle .selfTags .selfBtn .cancle{
+  border-right: 2rpx solid #eee;
+  color:#0a0a0a;
 }
 

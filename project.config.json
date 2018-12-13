@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -47,7 +47,13 @@
 				{
 					"id": -1,
 					"name": "showToast",
-					"pathName": "pages/showtoast/showtoast"
+					"pathName": "pages/showtoast/showtoast",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "圈子详情",
+					"pathName": "pages/home_newCircle/circleDetail/cicleDetail"
 				}
 			]
 		}

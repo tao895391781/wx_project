@@ -64,16 +64,36 @@
                     class="{{items.flag?'checkeds':''}}">{{items.value}}</view> 
             </view>
         </view>
-    </view>
-     <view class='selfTags'>
+
+        <view class='select' bindtap='selfOptionTags'>
+            <view class='title'>
+                <view class='icon' style="background:#1daca9">
+                    <text class='iconfont icon-jia'></text>
+                </view>
+                 自定义
+                 <view class='selectOPtions'>
+                    <text>{{selfValueTag}}</text>
+                   </view>
+                  <view class='jiantou'>
+                    <text class='iconfont icon-xiajiantou'></text>
+                  </view>
+            </view>
+        </view>   
+      </view>
+      
+     <view class='selfTags' wx:if='{{showSelfTags}}'>
           <view class='headTags'>
               <text>填写自定义标签</text>
           </view>
-          <view class='inputSelf'><input placeholder="最多输入十五个字"
-           placeholder-style="{{holdplace}}" /></view>
+          <view class='inputSelf'>
+                <input placeholder="最多输入十五个字"
+                        placeholder-style="{{holdplace}}"
+                        value='{{selfValueTag}}'
+                        bindinput="bindKeyInput"  />
+           </view>
           <view class='selfBtn'>
-               <view bindtap="cancleSelf">取消</view>   
-               <view bindtap="sureSelf">确定</view>   
+               <view bindtap="sureSelf" class='cancle' data-values='{{false}}'>取消</view>   
+               <view bindtap="sureSelf" data-values='{{true}}'>确定</view>   
           </view>
       </view>
     <view  class='nextStep'>

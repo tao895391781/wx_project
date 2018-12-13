@@ -1,0 +1,27 @@
+/* miniprogram/pages/home_newCircle/circleDetail/cicleDetail.wxss */
+page{
+   width:100%;
+  height: 100%;
+}
+.circleDetail{
+  width:100%;
+  height: 100%;
+}
+.circleDetail .header{
+  width:100%;
+  height: 340rpx;
+}
+.circleDetail .header image{
+  width:100%;
+  height: 100%;
+}
+.circleDetail .circleName view .headImg {
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+.circleDetail .circleName view .headImg image{
+  width: 100%;
+  height: 100%;
+}
