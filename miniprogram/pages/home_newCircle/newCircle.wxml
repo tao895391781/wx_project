@@ -7,20 +7,28 @@
     <view class='h1'>
       <text>创建自己的圈子</text>
     </view>
-    <view class='inputNext'>
-        <view class='input'>
+    <view class='inputNext {{!showNextstep ? "margin_0": ""}}'>
+        <view class='input {{!showNextstep ? "Inputfull": ""}}'>
             <input value='{{valueText}}'  placeholder='给你的圈子起个好听的名字吧' 
             placeholder-class='textHolderplace'
             bindinput='inputValues'
             ></input>
         </view>
-        <button class='next'
+        <button class='next' 
         style='background:{{bgc}};color:{{color}}' 
          bindtap='nextStep'
+        data-next='next'
+         wx:if="{{showNextstep}}"
          disabled='{{BtnDisabled}}'>下一步</button>
     </view>
      <switch bindchange="switch1Change" color='{{switchColor}}'/>
      <text class='openScrict'>开启私密，邀请别人才能参加</text>
+     <button class='changeNameStep {{BtnDisabled ? "bgcs": ""}}' 
+              wx:if='{{!showNextstep}}'
+              bindtap='nextSteps'
+              data-next='next'
+              disabled='{{BtnDisabled}}'
+             >下一步</button>
 </view>
 <!-- 选择圈子的类型 -->
 <view class='selectCircle' wx-if="{{!showCircle}}">
@@ -98,11 +106,22 @@
       </view>
     <view  class='nextStep'>
         <button
-          type="primary"
-          class='{{disabled ? "disabledSelect":""}}'
-          disabled="{{disabled}}"
-          bindtap="nextSteps">
-          下一步
-          </button>
+            wx:if="{{showNextsteps}}"
+            type="primary"
+            class='{{disabled ? "disabledSelect":""}}'
+            disabled="{{disabled}}"
+            data-next='next'
+            bindtap="nextSteps">
+            下一步
+        </button>
+        <button
+           wx:if="{{!showNextsteps}}"
+            type="primary"
+            class='{{disabled ? "disabledSelect":""}}'
+            disabled="{{disabled}}"
+            data-next='save'
+            bindtap="nextSteps">
+            保存
+        </button>
     </view>
 </view>

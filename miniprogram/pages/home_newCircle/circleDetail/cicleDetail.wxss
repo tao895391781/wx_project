@@ -2,6 +2,10 @@
 page{
    width:100%;
   height: 100%;
+  background: #f2f2f2;
+}
+.bgc{
+  background: #fff;
 }
 .circleDetail{
   width:100%;
@@ -15,13 +19,126 @@ page{
   width:100%;
   height: 100%;
 }
+.circleDetail .circleName{
+  padding: 30rpx;
+}
+.circleDetail .circleName .title{
+  color: #000;
+  font-size: 40rpx;
+  font-weight: 600;
+  padding-right: 10rpx;
+}
+.circleDetail .circleName>view{
+  margin: 20rpx 0 0;
+}
+.circleDetail .circleName .cardInfo{
+  color:#333;
+  line-height: 60rpx;
+  height: 60rpx;
+  font-size: 30rpx;
+}
+.circleDetail .circleName .cardInfo .pad{
+  padding: 0 20rpx;
+  color: #ddd;
+}
 .circleDetail .circleName view .headImg {
   display: inline-block;
+  vertical-align: top;
   width: 50rpx;
   height: 50rpx;
   border-radius: 50%;
+  overflow: hidden;
+  margin: 5rpx 20rpx 5rpx 0;
 }
 .circleDetail .circleName view .headImg image{
   width: 100%;
   height: 100%;
+}
+.circleDetail .circleIntro{
+  margin: 20rpx 0;
+  overflow: hidden;
+}
+.circleDetail .circleIntro .circleHead{
+  padding-left: 20rpx;
+  font-size: 34rpx;
+  color: #000;
+  margin: 30rpx auto 20rpx;
+}
+.circleDetail .circleIntro .addContent{
+  color: #1daca9;
+  font-size: 30rpx;
+  width: 94%;
+  margin:40rpx auto;
+  height: 240rpx;
+  line-height: 240rpx;
+  border:2rpx dashed #1daca9;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  border-radius: 8rpx;
+}
+.circleDetail .circleIntro .addContent .iconfont{
+  font-size: 50rpx;
+  font-weight: 700;
+  align-items: center;
+}
+.circleDetail .circleType{
+  margin:40rpx 0;
+  padding: 35rpx 0  35rpx 30rpx;
+  font-size: 34rpx;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+}
+.circleDetail .circleType view{
+  float: right;
+  color: #9e9e9e;
+  font-size: 24rpx;
+  flex:1;
+}
+.circleDetail .circleType view .type{
+  float: right;
+  font-size: 32rpx;
+}
+.circleDetail .circleType view .title{
+  color: #000;
+  font-size: 34rpx;
+}
+.circleDetail .circleType .iconfont{
+    display: inline-block;
+    width: 60rpx;
+    text-align: center;
+    font-size: 34rpx !important;
+    color: #9e9e9e;
+}
+.circleDetail .blank{
+  width: 100%;
+  height: 180rpx;
+}
+.shareAndGoDetail{
+  position: fixed;
+  bottom: 0;
+  left:0;
+  width: 100%;
+  height: 130rpx;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: -2px -2px 3px #f2f2f2;
+}
+.shareAndGoDetail view{
+  width: 45%;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  border-radius: 8rpx;
+  margin: 20rpx 0;
+}
+.shareAndGoDetail .share{
+  color: #ff5a5f;
+  border: 2rpx solid #ff5a5f;
+}
+.shareAndGoDetail .goDetail{
+  color: #fff;
+  background: #1daca9;
 }

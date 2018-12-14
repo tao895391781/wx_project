@@ -4,6 +4,7 @@ page{
 }
 .newcircle{
   height: 100%;
+  overflow: hidden;
 }
 .newcircle .h1{
   line-height: 60rpx;
@@ -16,12 +17,19 @@ page{
   display: flex;
   margin-left: 30rpx;
 }
+.newcircle .margin_0{
+  margin-left: 0;
+}
 .newcircle .input{
   width: 70%;
   height:100rpx;
   border: 2rpx solid #d7d7d7;
   vertical-align: top;
   border-radius: 10rpx;
+}
+.newcircle  .Inputfull{
+  width: 95%;
+  margin: 0 auto; 
 }
 .newcircle .next{
   width:20%;
@@ -37,6 +45,21 @@ page{
   height: 100%;
   width: 100%;
   margin-left: 20rpx;
+}
+.newcircle .changeNameStep{
+  position: fixed;
+  width:95%;
+  left:2.5%;
+  bottom: 20rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background: #1daca9;
+  color: #fff;
+  border-radius: 0;
+}
+.newcircle .bgcs{
+  background: rgba(29,172,169,.5) !important;
+  color: #fff !important;
 }
 .textHolderplace{
   font-size: 34rpx;

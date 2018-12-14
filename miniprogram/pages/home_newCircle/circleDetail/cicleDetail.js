@@ -1,5 +1,6 @@
 // miniprogram/pages/home_newCircle/circleDetail/cicleDetail.js
 const config = require('../../../config.js');
+const ToastFun = require('../../../template/showToast/showToast.js')
 Page({
 
   /**
@@ -9,7 +10,17 @@ Page({
     circleInfo:{},
     headImg:'',
     userInfo:{},
-
+    circleType:[],
+    changeCircle:{},
+    circleTypelength:0,
+    showToast: {
+      duration: 1000,
+      isShow: false,
+      title: '',
+      icon: '',
+      mask: false
+    },
+    selectData:{},
   },
 
   /**
@@ -17,16 +28,37 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    console.log(options)
-    options = {
-      selectData:'{"title":"我的第一个圈子","circleTag":[{"title":"外语","options":["英语","韩语"]},{"title":"阅读","options":["读书"]}]}'
-    } 
+    console.log(options);
+    options.selectData = JSON.parse(options.selectData);
+    this.setData({
+      selectData: options.selectData
+    })
     if (Object.keys(options).length != 0){
-      let opt = JSON.parse(options.selectData);
+      let opt = options.selectData;
+      if(options.newName){
+        opt.title = options.newName;
+        this.setData({
+          'showToast.title': '修改成功'
+        });
+        ToastFun.showToast(this.data.showToast);
+      }
       this.setData({
-        circleInfo: opt
+        circleInfo: opt,
+        changeCircle:opt.circleTag
       });
       console.log(this.data.circleInfo);
+      let circleTyleList = [];
+      if (options.selectCircleTag){
+
+      }
+      this.data.circleInfo.circleTag.forEach(v=>{
+        circleTyleList.push(...v.options)
+      });
+      this.setData({
+        circleType: circleTyleList,
+        circleTypelength: circleTyleList.length
+      });
+      console.log(this.data.circleTypelength)
     }
     //获取头图
     const db = wx.cloud.database();
@@ -46,13 +78,25 @@ Page({
       console.log(err)
     });
     const userInfo = config.getUserInfo();
+    if(userInfo.nickName.length > 2){
+      userInfo.nickName = userInfo.nickName.substring(0,2)+'...'
+    }
     this.setData({
       userInfo: userInfo
     })
     console.log(this.data.userInfo)
 
   },
-
+  // 改变圈子的名字 / 类型
+  changeCircleName: function(e){
+    console.log(e.currentTarget.dataset)
+    let that = this;
+    wx.redirectTo({
+      url: "../../../pages/home_newCircle/newCircle?selectdata=" + JSON.stringify(that.data.selectData) + '&type='+
+        e.currentTarget.dataset.type
+    })
+  },
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -2,6 +2,7 @@
 //控制圈子分类选择标签
 const ToastFun = require('../../template/showToast/showToast.js')
 const showmasks = require('../../template/mask/mask.js')
+const userInfo = require('../../config.js')
 Page({
   /**
    * 页面的初始数据
@@ -12,6 +13,7 @@ Page({
     switchColor:'#1aaba8',
     switchCheck:false,
     BtnDisabled:true,
+    showNextstep:true,
     bgc:'',
     color:'',
     selectCircleData:[],
@@ -35,32 +37,99 @@ Page({
     showSelfTags:false,
     ifFirstSelfTags:false,
     selectOptions:[],
+    showNextsteps: true,
+    selectD:{},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.callFunction({
-      name: 'getSelectCircle',
-      data: {},
-      complete: res => {
-        console.log(this)
-        console.log(res.result.data)
+    console.log(options);
+    if(Object.keys(options).length != 0){
+      let options_ = JSON.parse(options.selectdata);
+      if (options.type == 'name') {
         this.setData({
-          selectCircleData: res.result.data
+          valueText: userInfo.getUserInfo().nickName + '的圈子',
+          showNextstep: false,
+          BtnDisabled: false,
+          selectD: options_
         });
-        let arrFlag = [];
-        this.data.selectCircleData.forEach(v=>{
-          arrFlag.push(v.ctrShow)
-        });
+        wx.setNavigationBarTitle({
+          title: '修改圈子名称'
+        })
+      } else if (options.type == 'tags') {
         this.setData({
-          ctrShowList: arrFlag
+          showCircle: false,
+          showNextsteps: false,
+          disabled: false,
+          selectD: options_
         });
-      }
-    });
-  },
 
+        wx.showLoading({
+          title: '加载中',
+        })
+        console.log(options_)
+        this.getCircle('seting', options_);
+    }
+    } else {
+      this.getCircle('noseting');
+    }
+   
+   
+  },
+//获取圈子信息
+getCircle: function(sets,options){
+  wx.cloud.callFunction({
+    name: 'getSelectCircle',
+    data: {},
+    complete: res => {
+      console.log(this)
+      console.log(res.result.data)
+      this.setData({
+        selectCircleData: res.result.data
+      });
+      let arrFlag = [];
+      this.data.selectCircleData.forEach(v => {
+        arrFlag.push(v.ctrShow)
+      });
+      this.setData({
+        ctrShowList: arrFlag
+      });
+      wx.hideLoading();
+      if(sets == 'seting'){
+        console.log(options)
+        this.setCirclrtype(options);
+      }
+    }
+  });
+},
+//初始化改变圈子标签的数据
+setCirclrtype: function(options){
+  let circleType = options.circleTag;
+  let selectList = [].concat(this.data.selectCircleData);
+  let threeMore = [];
+  circleType.forEach(v=>{
+    selectList.forEach(v1=>{
+      if(v.title == v1.title){
+          v.options.forEach(v2=>{
+            v1.options.forEach(v3=>{
+              if(v2 == v3.value){
+                v3.flag = true;
+                threeMore.push(v3)
+              }
+            })
+          })
+        }
+    })
+  })
+    console.log(threeMore)
+    this.setData({
+        selectCircleData: selectList,
+        threeMore: threeMore.length
+ })
+
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -186,6 +255,7 @@ Page({
     })
   },
   inputValues:function(e){
+    console.log(e.detail.value)
     if (e.detail.value !=''){
       this.setData({
         BtnDisabled:false,
@@ -195,7 +265,9 @@ Page({
       }); 
     }else{
       this.setData({
-        BtnDisabled: true
+        BtnDisabled: true,
+        bgc: '#f1f1f1',
+        color: '#dadada',
       }); 
     }
   },
@@ -206,7 +278,7 @@ Page({
     }); 
   },
   // 选完标签进行下一步
-  nextSteps: function(){
+  nextSteps: function(e){
     console.log('选完标签下一步');
     let selectOpt = [];
     let arr = this.data.selectCircleData
@@ -252,9 +324,29 @@ Page({
       title: this.data.valueText,
       circleTag: selectOpt
     }
-    wx.redirectTo({
+    console.log(this.data.selectD);
+    console.log(e.target.dataset.next)
+    if(e.target.dataset.next == 'next'){
+      if (Object.keys(this.data.selectD).length != 0){
+        selectData.circleTag = this.data.selectD.circleTag;
+      }
+        console.log(selectData);
+         wx.redirectTo({
       url: '../../pages/home_newCircle/circleDetail/cicleDetail?selectData=' + JSON.stringify(selectData)
     });
+    } else if (e.target.dataset.next == 'save'){
+      if (Object.keys(this.data.selectD).length != 0) {
+        selectData.title = this.data.selectD.title;
+      }
+      console.log(selectData)
+      wx.redirectTo({
+        url: '../../pages/home_newCircle/circleDetail/cicleDetail?selectData=' + JSON.stringify(selectData)
+      });
+    }
+
+  },
+  //改变圈子标签后保存
+  saveSteps: function(){
 
   },
   //绑定input的值
@@ -295,6 +387,7 @@ Page({
     });
     this.checIfkDisabled();
   },
+
   onPullDownRefresh: function () {
 
   },
