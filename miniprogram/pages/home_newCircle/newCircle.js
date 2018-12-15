@@ -63,7 +63,8 @@ Page({
           showCircle: false,
           showNextsteps: false,
           disabled: false,
-          selectD: options_
+          selectD: options_,
+          ifFirstSelfTags:true
         });
 
         wx.showLoading({
@@ -110,6 +111,12 @@ setCirclrtype: function(options){
   let selectList = [].concat(this.data.selectCircleData);
   let threeMore = [];
   circleType.forEach(v=>{
+    if(v.title == '自定义'){
+      threeMore.push(v);
+      this.setData({
+        selfValueTag: v.options
+      })
+    }
     selectList.forEach(v1=>{
       if(v.title == v1.title){
           v.options.forEach(v2=>{
@@ -123,6 +130,7 @@ setCirclrtype: function(options){
         }
     })
   })
+
     console.log(threeMore)
     this.setData({
         selectCircleData: selectList,
@@ -183,7 +191,7 @@ setCirclrtype: function(options){
   },
   //自定义标签点击
   selfOptionTags: function(){
-      console.log('这是自定义标签');
+    console.log('这是自定义标签');
     console.log(this.data.threeMore);
     if (this.data.threeMore > 2 && this.data.selfValueTag.length == 0) {
       this.setData({
@@ -386,6 +394,7 @@ setCirclrtype: function(options){
       showSelfTags: false
     });
     this.checIfkDisabled();
+    console.log(this.data.selfValueTag)
   },
 
   onPullDownRefresh: function () {

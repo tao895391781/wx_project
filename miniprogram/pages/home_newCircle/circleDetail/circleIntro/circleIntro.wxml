@@ -1,0 +1,7 @@
+<!--miniprogram/pages/home_newCircle/circleDetail/circleIntro/circleIntro.wxml-->
+<!-- created by tll at 2018/12/15 -->
+<view class='circleIntros'>
+      <view class='addContents'>
+          <addMedia></addMedia>
+      </view>
+</view>

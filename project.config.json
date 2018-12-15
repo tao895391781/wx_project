@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -53,7 +53,20 @@
 				{
 					"id": -1,
 					"name": "圈子详情",
-					"pathName": "pages/home_newCircle/circleDetail/cicleDetail"
+					"pathName": "pages/home_newCircle/circleDetail/cicleDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "圈子介绍",
+					"pathName": "pages/home_newCircle/circleDetail/circleIntro/circleIntro",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "自定义组件  添加媒体文件",
+					"pathName": "components/addMedia/addMedia",
+					"query": ""
 				}
 			]
 		}

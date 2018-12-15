@@ -3,3 +3,12 @@
   overflow: hidden;
   text-overflow:ellipsis;
 }
+.bgcWhite{
+  background: #fff;
+}
+.mainBtnBgc{
+  background: #1daca9;
+}
+.mainColor{
+  color: #1daca9;
+}
