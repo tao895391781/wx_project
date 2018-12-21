@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -63,9 +63,9 @@
 					"query": ""
 				},
 				{
-					"id": 5,
-					"name": "自定义组件  添加媒体文件",
-					"pathName": "components/addMedia/addMedia",
+					"id": -1,
+					"name": "audio",
+					"pathName": "components/playAudio/playAudio",
 					"query": ""
 				}
 			]

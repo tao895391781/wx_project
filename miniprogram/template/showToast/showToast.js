@@ -8,6 +8,7 @@ mask:     是否显示透明蒙层，防止触摸穿透，默认：true 选填
 cb:       接口调用成功的回调函数 选填
 */
 function showToast(obj) {
+  console.log('showToast弹框')
   if (typeof obj == 'object' && obj.title) {
     if (!obj.duration || typeof obj.duration != 'number') { obj.duration = 1500; }//默认1.5s后消失 
     let that = getCurrentPages()[getCurrentPages().length - 1];//获取当前page实例 

@@ -16,7 +16,7 @@
         <text>0次打卡</text>
       </view>
   </view>
-  <view class='circleIntro bgc'>
+  <view class='circleIntro bgc' bindtap='goCircleIntroPage'>
       <view class='circleHead'>
           <text>圈子介绍</text>
       </view>

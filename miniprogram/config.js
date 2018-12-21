@@ -17,4 +17,19 @@ const formatString = function (str) {
       userInfo_1.avatarUrl = decodeURIComponent(userInfo_1.avatarUrl);
       return userInfo_1;
     };
-module.exports = { formatString: formatString, getUserInfo: getUserInfo}
+    // 向上/向下移动
+    const moveTopOrmoveBottom = function(newarr,index,direction){
+      if(direction == 'top'){
+        newarr[index - 1] = newarr.splice(index, 1, newarr[index - 1])[0];
+        return newarr;
+      } else if (direction == 'bottom'){
+        newarr[index + 1] = newarr.splice(index, 1, newarr[index + 1])[0];
+      }
+    };
+    //秒转换成分秒
+    const timeTransform = function(time){
+        let min = Math.floor(time / 60 % 60);
+        let sec = Math.floor(time % 60);
+        return (min > 9 ? min : '0' + min ) + ':' + (sec > 9 ? sec : '0' + sec)
+    }; 
+module.exports = { formatString, getUserInfo, moveTopOrmoveBottom, timeTransform}

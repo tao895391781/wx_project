@@ -31,13 +31,17 @@
 .content{
   width: 92%;
   margin: 40rpx auto;
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
   overflow: hidden;
 }
+
 .content>view>.header{
   height:90rpx;
   line-height: 90rpx; 
 
+}
+.content>view>.header .active_to_top{
+  color: red;
 }
 .content>view>view>.T1,.content>view>view>.T2,.content>view>view>.T3{
   padding: 0 20rpx;
@@ -78,7 +82,6 @@
   background: #fdfdfd;
   margin: 60rpx auto 0;
   color: #ccc;
-  /* font-size: 45rpx; */
   }
 .recording .close{
   font-size: 45rpx;
@@ -88,11 +91,17 @@
 .recording .point{
   font-size: 45rpx;
   padding-right:5rpx;
+  display: inline-block;
+  vertical-align: top;
 }
 .recording .time{
   padding-left: 30rpx;
   border-left: 2rpx solid #cccc;
   color: #ff3e44;
+  display: inline-block;
+  height:60rpx;
+  line-height: 60rpx;
+
 }
 .recording .recordRight{
   float: right;
@@ -101,6 +110,7 @@
   float: left;
   margin: 0 30rpx;
   font-size: 35rpx;
+  color: #1daca9;
 }
 .recording .ctrPlayPause{
   width: 100rpx;
@@ -121,4 +131,8 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+.content video{
+  width: 98%;
+  margin-left: 2%; 
 }

@@ -1,7 +1,14 @@
 <!--miniprogram/pages/home_newCircle/circleDetail/circleIntro/circleIntro.wxml-->
 <!-- created by tll at 2018/12/15 -->
+<import src="../../../../template/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
 <view class='circleIntros'>
       <view class='addContents'>
-          <addMedia></addMedia>
+          <addMedia mediaContents='{{mediaContents}}' 
+            bindgetAddDatas = 'getAddDatas'></addMedia>
       </view>
+      <view class='useCompuetr'>
+          这里是一段自定义文字，是的按 简单的的活动活动,  这里是一段自定义文字，是的按 简单的的活动活动，
+      </view> 
+      <button class='mainBtnBgc' bindtap='saveDatas'>保存</button>
 </view>

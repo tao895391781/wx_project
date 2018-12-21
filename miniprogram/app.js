@@ -23,6 +23,13 @@ App({
         })
     this.globalData = {
       userInfo:{},
+      showToast: {
+        duration: 1000,
+        isShow: false,
+        title: '',
+        icon: '',
+        mask: false
+      },
     }
   }
 })

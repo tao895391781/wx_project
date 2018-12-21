@@ -96,6 +96,13 @@ Page({
         e.currentTarget.dataset.type
     })
   },
+  //去编辑圈子介绍页
+  goCircleIntroPage:function(){
+    console.log('去编辑圈子介绍页')
+    wx.navigateTo({
+      url: "../../../pages/home_newCircle/circleDetail/circleIntro/circleIntro"
+    })
+  },
  
   /**
    * 生命周期函数--监听页面初次渲染完成

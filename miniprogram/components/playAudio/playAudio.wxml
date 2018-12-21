@@ -1,0 +1,21 @@
+<!--miniprogram/components/playAudio/playAudio.wxml-->
+        <view class='audio'>
+            <view class='playBtn' bindtap='playAudio'>
+                <text class='iconfont icon-bofang1' wx:if='{{showPlayAudio}}'></text>
+                <text class='iconfont icon-zanting' wx:if='{{!showPlayAudio}}'></text>
+            </view>
+            <view class='audioCtr'>
+                  <view class='headText'>录音音频</view>
+                  <view class='ctr'>
+                    <text>{{currentTimes}}</text>
+                    <view class='progress'>
+                        <view class='playprogress' style="width:{{progressWidth}}">
+                            <view class='pointCtr'>
+                                  <view></view>
+                            </view>
+                        </view>
+                    </view>
+                    <text>{{audioData.duration}}</text>
+                  </view>
+            </view> 
+        </view>
