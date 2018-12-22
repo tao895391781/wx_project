@@ -3,6 +3,7 @@
 <import src="../../template/mask/mask.wxml" />
 <template is="showToast" data="{{showToast: showToast}}" />
 <template is="mask" data="{{showMask:showMask}}" />
+<view class='newCircleBox' wx:if="{{shownewCircleBox}}">
 <view class='newcircle' wx-if="{{showCircle}}">
     <view class='h1'>
       <text>创建自己的圈子</text>
@@ -124,4 +125,5 @@
             保存
         </button>
     </view>
+</view>
 </view>

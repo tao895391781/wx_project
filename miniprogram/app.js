@@ -13,12 +13,19 @@ App({
         wx.getUserInfo({
           success:function(res){
             console.log(res);
-            let userInfo = {
-              "nickName":res.userInfo.nickName,
-              "avatarUrl": encodeURIComponent(res.userInfo.avatarUrl)
-            }
-            wx.setStorageSync('userInfo', JSON.stringify(userInfo));
-            that.globalData.userInfo = res.userInfo;
+            wx.cloud.callFunction({
+              name: 'login',
+              complete: res1 => {
+                console.log(res1);
+                let userInfo = {
+                  "nickName": res.userInfo.nickName,
+                  "avatarUrl": encodeURIComponent(res.userInfo.avatarUrl),
+                  "openid": res1.result.openid
+                };
+                wx.setStorageSync('userInfo', JSON.stringify(userInfo));
+                that.globalData.userInfo = res.userInfo;
+              }
+            });
           },
         })
     this.globalData = {
@@ -30,6 +37,7 @@ App({
         icon: '',
         mask: false
       },
+      db:wx.cloud.database()
     }
   }
 })

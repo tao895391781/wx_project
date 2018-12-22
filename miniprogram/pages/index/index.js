@@ -15,12 +15,12 @@ Page({
   onLoad: function (options) {
     //云函数
     let that = this;
-    wx.cloud.callFunction({
-      name: 'login',
-      complete: res => {
-        console.log(res);
-      }
-    });
+    // wx.cloud.callFunction({
+    //   name: 'login',
+    //   complete: res => {
+    //     console.log(res);
+    //   }
+    // });
     //判断用户是否授权
     wx.getSetting({
       success(res) {

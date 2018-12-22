@@ -6,7 +6,7 @@
     <image src='{{headImg}}' mode='scaleToFill'></image>
   </view>
   <view class='circleName bgc'>
-      <text class='title'>{{circleInfo.title}}</text>
+      <text class='title'>{{circleInfo.circleName}}</text>
       <text class='iconfont icon-xiugaimima' bindtap='changeCircleName'  data-type='name'></text>
       <view class='cardInfo'>
         <view class='headImg'><image src="{{userInfo.avatarUrl}}"></image></view>
@@ -16,13 +16,32 @@
         <text>0次打卡</text>
       </view>
   </view>
-  <view class='circleIntro bgc' bindtap='goCircleIntroPage'>
+  <view class='circleIntro bgc'>
       <view class='circleHead'>
-          <text>圈子介绍</text>
+          <text>圈子介绍  </text><text class='iconfont icon-xiugaimima'  
+                   bindtap='goCircleIntroPage' wx:if='{{circleIntro.length != 0}}'></text>
       </view>
-      <view class='addContent'>
-          <text class='iconfont icon-jia2'></text>
-          <text>丰富圈子的介绍，让更多人了解你的圈子</text>
+          <view class='addContent' wx:if='{{circleIntro.length == 0}}' 
+            bindtap='goCircleIntroPage'
+          >
+              <text class='iconfont icon-jia2'></text>
+              <text>丰富圈子的介绍，让更多人了解你的圈子</text>
+          </view>
+      <view class='showcircleIntro' wx:if='{{circleIntro.length != 0}}'>
+          <view wx:for='{{circleIntro}}' wx:key="{{index}}">
+              <view wx:if="{{item.type == 'text'}}" class='text'>
+                  {{item.content}}
+              </view>
+              <view  wx:if="{{item.type == 'video'}}" class='video'>
+                  <video src = '{{item.content}}'></video>
+              </view>
+              <view wx:if="{{item.type == 'img'}}" class='img'>
+                  <image src='{{item.content}}' mode='aspectFit'></image>
+              </view>
+              <view wx:if="{{item.type == 'record'}}" class='record'>
+                  <playAudio audioData="{{item}}"></playAudio>
+              </view>
+          </view>  
       </view>
   </view>
   <view class='circleIntro bgc'>

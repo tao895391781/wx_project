@@ -3,11 +3,13 @@
 const ToastFun = require('../../template/showToast/showToast.js')
 const showmasks = require('../../template/mask/mask.js')
 const userInfo = require('../../config.js')
+const db = wx.cloud.database();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    shownewCircleBox:false,
     showCircle:true,
     valueText:'',
     switchColor:'#1aaba8',
@@ -39,6 +41,9 @@ Page({
     selectOptions:[],
     showNextsteps: true,
     selectD:{},
+    ifChangeName:false,
+    ifChangeTags:false,
+    circleId:''
   },
 
   /**
@@ -47,34 +52,51 @@ Page({
   onLoad: function (options) {
     console.log(options);
     if(Object.keys(options).length != 0){
-      let options_ = JSON.parse(options.selectdata);
-      if (options.type == 'name') {
-        this.setData({
-          valueText: userInfo.getUserInfo().nickName + '的圈子',
-          showNextstep: false,
-          BtnDisabled: false,
-          selectD: options_
-        });
-        wx.setNavigationBarTitle({
-          title: '修改圈子名称'
-        })
-      } else if (options.type == 'tags') {
-        this.setData({
-          showCircle: false,
-          showNextsteps: false,
-          disabled: false,
-          selectD: options_,
-          ifFirstSelfTags:true
-        });
+      this.setData({
+        circleId: options.circleId
+      });
+      console.log('根据圈子id获取圈子信息');
+      db.collection('all_circle').doc(options.circleId).get({
+        success: res => {
+          console.log(res.data);
+          let options_ = res.data;
+          if (options.type == 'name') {
+            this.setData({
+              shownewCircleBox: true,
+              valueText: userInfo.getUserInfo().nickName + '的圈子',
+              showNextstep: false,
+              BtnDisabled: false,
+              selectD: options_,
+              ifChangeName:true
+            });
+            wx.setNavigationBarTitle({
+              title: '修改圈子名称'
+            })
+          } else if (options.type == 'tags') {
 
-        wx.showLoading({
-          title: '加载中',
-        })
-        console.log(options_)
-        this.getCircle('seting', options_);
-    }
+            this.setData({
+              showCircle: false,
+              showNextsteps: false,
+              disabled: false,
+              selectD: options_,
+              ifFirstSelfTags: true,
+              ifChangeTags:true
+            });
+
+            wx.showLoading({
+              title: '加载中',
+            })
+            console.log(options_)
+            this.getCircle('seting', options_);
+          }
+        }
+      });
     } else {
       this.getCircle('noseting');
+      this.setData({
+        ifChange: false,
+        shownewCircleBox:true
+      });
     }
    
    
@@ -95,7 +117,8 @@ getCircle: function(sets,options){
         arrFlag.push(v.ctrShow)
       });
       this.setData({
-        ctrShowList: arrFlag
+        ctrShowList: arrFlag,
+        shownewCircleBox: true,
       });
       wx.hideLoading();
       if(sets == 'seting'){
@@ -285,8 +308,9 @@ setCirclrtype: function(options){
       switchCheck: e.detail.value
     }); 
   },
-  // 选完标签进行下一步
+  // 选完标签进行下一步--创建圈子
   nextSteps: function(e){
+    let that = this;
     console.log('选完标签下一步');
     let selectOpt = [];
     let arr = this.data.selectCircleData
@@ -322,35 +346,61 @@ setCirclrtype: function(options){
         options: [this.data.selfValueTag]
       }) 
     }
+    //创建圈子提交的数据
       let submitData = {
         circleName: this.data.valueText,
         circleTag: selectOpt,
-        ifPrivate:this.data.switchCheck
+        ifPrivate:this.data.switchCheck,
+        openId:userInfo.getUserInfo().openid
       };
-    console.log(submitData);
-    let selectData = {
-      title: this.data.valueText,
-      circleTag: selectOpt
+      console.log(submitData);
+      //保存圈子到数据库
+    if (this.data.ifChangeName){
+          console.log('改变圈子名字');
+          db.collection('all_circle').doc(this.data.circleId).update({
+            data:{
+              circleName: that.data.valueText,
+              ifPrivate: that.data.switchCheck,
+            },
+            success: res=>{
+              console.log(res);
+              wx.redirectTo({
+                url: '../../pages/home_newCircle/circleDetail/cicleDetail?circleId=' + that.data.circleId
+              });
+            }
+          })
+    } else if (this.data.ifChangeTags){
+            console.log('改变圈子标签');
+            db.collection('all_circle').doc(this.data.circleId).update({
+              data: {
+                circleTag: selectOpt,
+              },
+              success: res => {
+                console.log(res);
+                wx.redirectTo({
+                  url: '../../pages/home_newCircle/circleDetail/cicleDetail?circleId=' + that.data.circleId
+                });
+              }
+            })
+    }else{
+          console.log('保存圈子')
+          db.collection('all_circle').add({
+            data: {
+              circleName: submitData.circleName,
+              circleTag: submitData.circleTag,
+              ifPrivate: submitData.ifPrivate,
+              openId: submitData.openid,
+              circleIntro:[]
+            },
+            success: function (res) {
+              console.log(res);
+              wx.redirectTo({
+                url: '../../pages/home_newCircle/circleDetail/cicleDetail?circleId=' + res._id
+              });
+            }
+          })
     }
-    console.log(this.data.selectD);
-    console.log(e.target.dataset.next)
-    if(e.target.dataset.next == 'next'){
-      if (Object.keys(this.data.selectD).length != 0){
-        selectData.circleTag = this.data.selectD.circleTag;
-      }
-        console.log(selectData);
-         wx.redirectTo({
-      url: '../../pages/home_newCircle/circleDetail/cicleDetail?selectData=' + JSON.stringify(selectData)
-    });
-    } else if (e.target.dataset.next == 'save'){
-      if (Object.keys(this.data.selectD).length != 0) {
-        selectData.title = this.data.selectD.title;
-      }
-      console.log(selectData)
-      wx.redirectTo({
-        url: '../../pages/home_newCircle/circleDetail/cicleDetail?selectData=' + JSON.stringify(selectData)
-      });
-    }
+   
 
   },
   //改变圈子标签后保存

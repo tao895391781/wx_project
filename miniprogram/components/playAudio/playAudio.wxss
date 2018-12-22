@@ -9,10 +9,14 @@
   display: flex;
 }
  .audio .playBtn{
-  width: 90rpx;
-  height: 90rpx;
+  width: 70rpx;
+  height: 70rpx;
+  background:#1daca9;
+  border-radius: 50%;
   text-align: center;
-  line-height: 80rpx;
+  line-height: 70rpx;
+  color: #fff;
+  border:8rpx solid #fff;
 }
  .audio .audioCtr{
   flex:1;
@@ -61,6 +65,6 @@
   border-radius: 50%;
 }
 .audio .playBtn text{
-  font-size: 60rpx;
+  font-size: 50rpx;
   
 }

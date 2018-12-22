@@ -13,12 +13,11 @@ Component({
       value:'',
       observer:function(newV,oldV){
         // 子组件传递给父组件的数据
-        this.triggerEvent('getAddDatas', this.data.mediaContents,{})
+        this.triggerEvent('getAddDatas', this.data.mediaContents,{});
       },
     }
   },
   data:{
-    mediaLength:0,
     setTimes:'00:00',
     showPlay:true,
     showRecording:false,
@@ -43,7 +42,10 @@ Component({
           wx.chooseImage({
             count:1,
             success: function(res){
-              console.log(res)
+              console.log(res);
+              wx.showLoading({
+                title: '上传中',
+              });
               const tempFilePaths = res.tempFilePaths[0];
               this_.addtypes_(e.currentTarget.dataset.type, tempFilePaths)
             }
@@ -69,6 +71,9 @@ Component({
             maxDuration: 60,
             camera: 'back',
             success(res) {
+              wx.showLoading({
+                title: '正在上传',
+              })
               console.log(res);
               this_.addtypes_('video', res.tempFilePath);
             }
@@ -92,19 +97,18 @@ Component({
       }
       this.setData({
         mediaContents: mediaContents_,
-        mediaLength: mediaContents_.length
       })
-      console.log(this.data.mediaContents)
+      wx.hideLoading()
     },
     //删除指定模块
     deleteIntro: function(e){
       let index = e.currentTarget.dataset.index;
       console.log(index);
       let arr = [].concat(this.data.mediaContents);
+      console.log(arr)
       arr.splice(index,1);
       this.setData({
         mediaContents:arr,
-        mediaLength: arr.length
       })
       console.log(this.data.mediaContents)
     },
@@ -125,7 +129,7 @@ Component({
     moveToBottom: function(e){
       let index = e.currentTarget.dataset.index;
       console.log(index);
-      if (index == this.data.mediaLength-1) return;
+      if (index == this.data.mediaContents.length-1) return;
       console.log('向下移');
       let newarr = [].concat(this.data.mediaContents);
       Fn.moveTopOrmoveBottom(newarr, index,'bottom');
@@ -204,6 +208,9 @@ Component({
           app.globalData.showToast.title = '录音时长不少于2s';
           ToastFun.showToast(app.globalData.showToast);
       }else{
+        wx.showLoading({
+          title: '正在上传',
+        })
           let this_ = this;
           console.log(this.data.ifPause);
           //解决录音暂停时获取的录音时长异常问题
@@ -226,6 +233,28 @@ Component({
       this.setData({
         timePointAnimation: Animations.export()
       })
+    },
+    // 改变所选的图片
+    changeImg: function (e) {
+      let this_ = this;
+      console.log(e.currentTarget.dataset.index);
+      wx.chooseImage({
+        count: 1,
+        success: function (res) {
+          console.log(res)
+          wx.showLoading({
+            title: '上传中',
+          })
+          const tempFilePaths = res.tempFilePaths[0];
+          let contents = `mediaContents[${e.currentTarget.dataset.index}].content`
+          this_.setData({
+            [contents]: tempFilePaths
+          })
+        }
+      })
+    },
+    imgloadover:function(){
+      wx.hideLoading()
     },
   },
   attached: function () {
@@ -253,6 +282,5 @@ Component({
         ifPause:true
       })
     })
-    
   },
 })

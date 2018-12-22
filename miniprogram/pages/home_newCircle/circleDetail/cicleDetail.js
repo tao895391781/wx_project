@@ -1,6 +1,7 @@
 // miniprogram/pages/home_newCircle/circleDetail/cicleDetail.js
 const config = require('../../../config.js');
 const ToastFun = require('../../../template/showToast/showToast.js')
+const db = wx.cloud.database();
 Page({
 
   /**
@@ -20,7 +21,8 @@ Page({
       icon: '',
       mask: false
     },
-    selectData:{},
+    circleId:'',
+    circleIntro:[],
   },
 
   /**
@@ -29,39 +31,32 @@ Page({
   onLoad: function (options) {
     const that = this;
     console.log(options);
-    options.selectData = JSON.parse(options.selectData);
-    this.setData({
-      selectData: options.selectData
-    })
     if (Object.keys(options).length != 0){
-      let opt = options.selectData;
-      if(options.newName){
-        opt.title = options.newName;
-        this.setData({
-          'showToast.title': '修改成功'
-        });
-        ToastFun.showToast(this.data.showToast);
-      }
       this.setData({
-        circleInfo: opt,
-        changeCircle:opt.circleTag
+        circleId: options.circleId
       });
-      console.log(this.data.circleInfo);
-      let circleTyleList = [];
-      if (options.selectCircleTag){
-
-      }
-      this.data.circleInfo.circleTag.forEach(v=>{
-        circleTyleList.push(...v.options)
-      });
-      this.setData({
-        circleType: circleTyleList,
-        circleTypelength: circleTyleList.length
-      });
-      console.log(this.data.circleTypelength)
+      console.log('根据圈子id获取圈子信息');
+      db.collection('all_circle').doc(options.circleId).get({
+        success: res => {
+          console.log(res.data);
+          that.setData({
+            circleInfo: res.data,
+            circleIntro: res.data.circleIntro
+          });
+          console.log(that.data.circleInfo);
+          let circleTyleList = [];
+          res.data.circleTag.forEach(v => {
+            circleTyleList.push(...v.options)
+          });
+          this.setData({
+            circleType: circleTyleList,
+            circleTypelength: circleTyleList.length
+          });
+          console.log(this.data.circleTypelength)
+        }
+      })
     }
     //获取头图
-    const db = wx.cloud.database();
     db.collection('headImg').limit(1).get().then(res=>{
       console.log(res);
       wx.cloud.getTempFileURL({
@@ -92,15 +87,15 @@ Page({
     console.log(e.currentTarget.dataset)
     let that = this;
     wx.redirectTo({
-      url: "../../../pages/home_newCircle/newCircle?selectdata=" + JSON.stringify(that.data.selectData) + '&type='+
-        e.currentTarget.dataset.type
+      url: "../../../pages/home_newCircle/newCircle?type=" +
+        e.currentTarget.dataset.type + '&circleId=' + that.data.circleId
     })
   },
   //去编辑圈子介绍页
   goCircleIntroPage:function(){
     console.log('去编辑圈子介绍页')
     wx.navigateTo({
-      url: "../../../pages/home_newCircle/circleDetail/circleIntro/circleIntro"
+      url: "../../../pages/home_newCircle/circleDetail/circleIntro/circleIntro?circleId=" + this.data.circleId
     })
   },
  

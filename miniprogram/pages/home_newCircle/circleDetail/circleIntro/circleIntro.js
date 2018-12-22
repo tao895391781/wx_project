@@ -10,13 +10,30 @@ Page({
   data: {
     mediaContents:[],
     saveData:[],
+    circleId:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.showLoading({
+      title: '正在加载',
+    })
+    const this_ = this;
+    console.log(options);
+    this.setData({
+      circleId: options.circleId
+    });
+    //获取添加的圈子介绍信息
+    db.collection('all_circle').doc(options.circleId).get()
+    .then(res=>{
+      console.log(res);
+      wx.hideLoading()
+      this_.setData({
+        mediaContents:res.data.circleIntro
+      })
+    })  
   },
 
   /**
@@ -44,45 +61,25 @@ Page({
   saveDatas: function(){
     console.log(this.data.saveData);
     let data = this.data.saveData;
-    let ifsaveSuccess = [];
     let data_ = [];
+    let ifsaveSuccess = [];
     let this_=  this;
     data.forEach(v=>{
-      if(v.type == 'record' && v.content){
-        data_.push(1);
-        db.collection('add_mediaData').add({
-          data: {
-            type: v.type,
-            content: v.content,
-            duration:v.duration
-          },
-          success(res) {
-            console.log(res);
-            this_.checkSuccess(ifsaveSuccess, data_)
-          },
-        })
-      }else{
-        if (v.content){
-          data_.push(1);
-          db.collection('add_mediaData').add({
-            data: {
-              type: v.type,
-              content: v.content
-            },
-            success(res) {
-              console.log(res);
-              this_.checkSuccess(ifsaveSuccess, data_)
-            },
-          })
-        }
+      if(v.content){
+        data_.push(v);
       }
-    });
-    if(data_.length == 0){
-      wx.redirectTo({
-        url: "../../../../pages/home_newCircle/circleDetail/cicleDetail",
+    })
+    db.collection('all_circle').doc(this.data.circleId).update({
+      data: {
+        circleIntro: data_
+      },
+      success(res) {
+        console.log(res);
+         wx.redirectTo({
+           url: "../../../../pages/home_newCircle/circleDetail/cicleDetail?circleId=" + this_.data.circleId,
       })
-    }
-   
+      },
+    })
   },
   checkSuccess: function(arr,arr1){
     arr.push(1);
@@ -91,9 +88,10 @@ Page({
       app.globalData.showToast.title = '保存成功'
       console.log(app.globalData.showToast)
       ToastFun.showToast(app.globalData.showToast);
-      wx.redirectTo({
-        url: "../../../../pages/home_newCircle/circleDetail/cicleDetail",
-      })
+      // wx.redirectTo({
+      //   url: "../../../../pages/home_newCircle/circleDetail/cicleDetail",
+      // })
+      wx.navigateBack();
     }
   },
   /**

@@ -82,6 +82,28 @@ page{
   font-weight: 700;
   align-items: center;
 }
+.circleDetail .circleIntro .showcircleIntro{
+  width: 94%;
+  margin: 0 auto;
+}
+.circleDetail .circleIntro .showcircleIntro>view{
+  margin: 10rpx 0;
+}
+.circleDetail .circleIntro .showcircleIntro .text{
+  font-size: 36rpx;
+}
+.circleDetail .circleIntro .showcircleIntro .img{
+  width:100%;
+}
+.circleDetail .circleIntro .showcircleIntro .img image{
+  width: 100%;
+}
+.circleDetail .circleIntro .showcircleIntro .video{
+  width: 100%;
+}
+.circleDetail .circleIntro .showcircleIntro .video video{
+  width: 100%;
+}
 .circleDetail .circleType{
   margin:40rpx 0;
   padding: 35rpx 0  35rpx 30rpx;
