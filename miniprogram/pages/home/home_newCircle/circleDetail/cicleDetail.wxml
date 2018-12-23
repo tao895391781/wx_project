@@ -21,15 +21,15 @@
   <view class='circleIntro bgc'>
       <view class='circleHead'>
           <text>圈子介绍  </text><text class='iconfont icon-xiugaimima'  
-                   bindtap='goCircleIntroPage' wx:if='{{circleIntro.length != 0}}'></text>
+                   bindtap='goCircleIntroPage' wx:if='{{circleIntro.circleInfo.length != 0}}'></text>
       </view>
-          <view class='addContent' wx:if='{{circleIntro.length == 0}}' 
+          <view class='addContent' wx:if='{{circleIntro.circleInfo.length == 0}}' 
             bindtap='goCircleIntroPage'
           >
               <text class='iconfont icon-jia2'></text>
               <text>丰富圈子的介绍，让更多人了解你的圈子</text>
           </view>
-      <view class='showcircleIntro' wx:if='{{circleIntro.length != 0}}'>
+      <view class='showcircleIntro' wx:if='{{circleIntro.circleInfo.length != 0}}'>
           <view wx:for='{{circleInfo.circleIntro}}' wx:key="{{index}}">
               <view wx:if="{{item.type == 'text'}}" class='text'>
                   {{item.content}}
