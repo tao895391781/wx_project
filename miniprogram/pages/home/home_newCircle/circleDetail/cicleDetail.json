@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "圈子详情",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "playAudio": "../../../../components/playAudio/playAudio"
+  }
+}

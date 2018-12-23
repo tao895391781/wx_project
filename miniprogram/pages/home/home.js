@@ -88,7 +88,7 @@ Page({
   newCircle: function(){
     console.log('新建圈子');
     wx.navigateTo({
-      url: '../../pages/home_newCircle/newCircle'
+      url: 'home_newCircle/newCircle'
     });
   },
 

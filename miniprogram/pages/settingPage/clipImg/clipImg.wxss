@@ -1,0 +1,17 @@
+/* miniprogram/pages/settingPage/clipImg/clipImg.wxss */
+page{
+  height: 100%;
+}
+.clipImg{
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+.clipImg .img{
+  height: 90%;
+}
+.clipImg .img canvas{
+  height: 100%;
+}

@@ -5,10 +5,12 @@
     "pages/message/message",
     "pages/my/my",
     "pages/home/home",
-    "pages/my_Homepage/my_Homepage",
-    "pages/home_newCircle/newCircle",
-    "pages/home_newCircle/circleDetail/cicleDetail",
-    "pages/home_newCircle/circleDetail/circleIntro/circleIntro"
+    "pages/home/home_newCircle/newCircle",
+    "pages/home/home_newCircle/circleDetail/cicleDetail",
+    "pages/home/home_newCircle/circleDetail/circleIntro/circleIntro",
+    "pages/settingPage/changeHeadImg/changeheadImg",
+    "pages/home/home_newCircle/circleDetail/circleHostIntro/circleHostIntro",
+    "pages/settingPage/clipImg/clipImg"
   ],
   "tabBar": {
     "fontSize": "19rpx",

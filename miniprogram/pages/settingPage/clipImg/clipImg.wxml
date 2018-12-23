@@ -1,0 +1,8 @@
+<!--miniprogram/pages/settingPage/clipImg/clipImg.wxml-->
+<view class='clipImg'>
+    <view class='img'>
+    <canvas canvas-id='myCanvas'></canvas>
+        <!-- <image src='{{imgurl}}' mode='aspectFit'></image> -->
+    </view>
+    <view class='confirm'></view>
+</view>
