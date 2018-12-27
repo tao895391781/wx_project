@@ -10,8 +10,80 @@ page{
   background: #000;
 }
 .clipImg .img{
-  height: 90%;
+  height: 91%;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
-.clipImg .img canvas{
+.clipImg .img .canva{
+  margin: 0 auto;
+  position: relative;
+  z-index: 100;
+}
+.clipImg .img .canva canvas{ 
+  position: absolute;
+  left:-200%;
+  top:0;
+
+} 
+.clipImg .img .canva  image{
+  position: absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+}
+.clipImg .img .canva .movearea{
+  position: absolute;
+  left:0;
+  top:0;
+  width:100%;
   height: 100%;
+}
+.clipImg .img .canva #rectMove{
+  background: rgba(208,244,253,.4);
+  border: 4rpx solid #fff;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  z-index: 101;
+}
+.clipImg .img .canva .movearea view{
+  width: 33.3%;
+  height:33.3%;
+  border: 2rpx dashed #fff;
+  border-top-width: 0;
+  border-right-width: 0;
+  box-sizing: border-box;
+}
+.clipImg .img .canva .movearea .borderLs{
+  border-left-width: 0;
+}
+.clipImg .img .canva .movearea .borderBs{
+  border-bottom-width: 0;
+}
+.clipImg .confirm{
+  flex:1;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 2rpx solid #eee;
+}
+.clipImg .confirm view{
+    color: #fff;
+    width: 2em;
+    padding:15rpx 0;
+    font-size: 34rpx;
+}
+.clipImg .confirm .left{
+  text-align: left;
+  margin-left: 40rpx;
+}
+.clipImg .confirm .right{
+  text-align: right;
+  margin-right: 40rpx;
 }

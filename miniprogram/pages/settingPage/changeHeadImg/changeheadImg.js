@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-      circleId:''
+    circleId:'XCMkYsDR1TiNHHza',
+    headImg:'',
   },
 
   /**
@@ -16,8 +17,9 @@ Page({
     if (Object.keys(options).length!=0){
       console.log(options);
       this.setData({
-        circleId:options.circleId
-      })
+        circleId:options.circleId,
+      });
+      wx.setStorageSync('changeImg', '')
     }
 
   },
@@ -28,8 +30,8 @@ Page({
       success: chooseResult => {
         // 将图片上传至云存储空间
         console.log(chooseResult)
-        wx.redirectTo({
-          url: '../clipImg/clipImg?imgurl=' + chooseResult.tempFilePaths[0]
+        wx.navigateTo({
+          url: '../clipImg/clipImg?imgurl=' + chooseResult.tempFilePaths[0] + '&circleId=' + this_.data.circleId
         });
         return ;
         wx.cloud.uploadFile({
@@ -41,7 +43,7 @@ Page({
           success: res => {
             console.log('上传成功', res);
             return;
-            db.collection('all_circle').doc(this_.circleId).update({
+            db.collection('all_circle').doc(this_.data.circleId).update({
               data:{
                 headImg: res.fileID
               },
@@ -67,7 +69,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(this.data.circleId);
+    if (wx.getStorageSync('changeImg')){
+      this.setData({
+        headImg: decodeURIComponent(wx.getStorageSync('changeImg'))
+      });
+      setTimeout(()=>{
+        wx.navigateBack()
+      },1000)
+    }
   },
 
   /**

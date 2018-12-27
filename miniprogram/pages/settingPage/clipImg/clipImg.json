@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "活动头图"
+  "navigationBarTitleText": "活动头图",
+  "disableScroll": true
 }

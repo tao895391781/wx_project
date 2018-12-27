@@ -9,9 +9,9 @@ page{
   margin: 40rpx 20rpx;
 }
 .changeHeadImg .uploadImg .addImg{
-  width: 50%;
-  height: 170rpx;
-  line-height: 170rpx;
+  width: 360rpx;
+  height: 180rpx;
+  line-height: 180rpx;
   background: #333;
   margin: 30rpx 0;
   text-align: center;
@@ -19,4 +19,8 @@ page{
 .changeHeadImg .uploadImg .addImg text{
   font-size: 90rpx;
   color: #fff;
+}
+.changeHeadImg .uploadImg .addImg image{
+  width: 100%;
+  height: 100%;
 }

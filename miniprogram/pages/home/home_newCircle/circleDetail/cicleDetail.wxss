@@ -117,6 +117,7 @@ page{
 .circleDetail .circleIntro .showcircleIntro{
   width: 94%;
   margin: 0 auto;
+  padding: 40rpx 0;
 }
 .circleDetail .circleIntro .showcircleIntro>view{
   margin: 10rpx 0;

@@ -21,7 +21,7 @@ Page({
       icon: '',
       mask: false
     },
-    circleId:'',
+    circleId:'XCMkYsDR1TiNHHza',
     circleIntro:[],
   },
 
