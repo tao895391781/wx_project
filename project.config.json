@@ -6,11 +6,13 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"appid": "wxce803e6ed61ee6fa",
 	"projectname": "tll_WXxcx",
-	"libVersion": "2.2.5",
+	"libVersion": "2.4.2",
+	"compileType": "miniprogram",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -28,12 +30,54 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 7,
 			"list": [
 				{
 					"id": 0,
 					"name": "db guide",
 					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "quanzi",
+					"pathName": "pages/home/home_newCircle/newCircle",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "showToast",
+					"pathName": "pages/showtoast/showtoast",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "圈子详情",
+					"pathName": "pages/home/home_newCircle/circleDetail/cicleDetail",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "圈子介绍",
+					"pathName": "pages/home/home_newCircle/circleDetail/circleIntro/circleIntro",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "修改头图",
+					"pathName": "pages/settingPage/changeHeadImg/changeheadImg",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "圈主介绍",
+					"pathName": "pages/home/home_newCircle/circleDetail/circleHostIntro/circleHostIntro",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动头图",
+					"pathName": "pages/settingPage/clipImg/clipImg",
 					"query": ""
 				}
 			]

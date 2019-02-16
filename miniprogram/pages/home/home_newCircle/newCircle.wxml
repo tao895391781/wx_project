@@ -1,0 +1,129 @@
+<!--miniprogram/pages/newCircle/newCircle.wxml-->
+<import src="../../../template/showToast/showToast.wxml" />
+<import src="../../../template/mask/mask.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
+<template is="mask" data="{{showMask:showMask}}" />
+<view class='newCircleBox' wx:if="{{shownewCircleBox}}">
+<view class='newcircle' wx-if="{{showCircle}}">
+    <view class='h1'>
+      <text>创建自己的圈子</text>
+    </view>
+    <view class='inputNext {{!showNextstep ? "margin_0": ""}}'>
+        <view class='input {{!showNextstep ? "Inputfull": ""}}'>
+            <input value='{{valueText}}'  placeholder='给你的圈子起个好听的名字吧' 
+            placeholder-class='textHolderplace'
+            bindinput='inputValues'
+            ></input>
+        </view>
+        <button class='next' 
+        style='background:{{bgc}};color:{{color}}' 
+         bindtap='nextStep'
+        data-next='next'
+         wx:if="{{showNextstep}}"
+         disabled='{{BtnDisabled}}'>下一步</button>
+    </view>
+     <switch bindchange="switch1Change" color='{{switchColor}}'/>
+     <text class='openScrict'>开启私密，邀请别人才能参加</text>
+     <button class='changeNameStep {{BtnDisabled ? "bgcs": ""}}' 
+              wx:if='{{!showNextstep}}'
+              bindtap='nextSteps'
+              data-next='next'
+              disabled='{{BtnDisabled}}'
+             >下一步</button>
+</view>
+<!-- 选择圈子的类型 -->
+<view class='selectCircle' wx-if="{{!showCircle}}">
+  <view class='header'>
+    <text>点击展开分类，最多可以添加3个标签</text>
+  </view>
+  <view class='selectBox'>
+   <view wx:for='{{selectCircleData}}' 
+          class='select'
+          wx:key="{{index}}">
+        <view class='title' bindtap='showOption' data-index='{{index}}' data-item='{{item}}'>
+            <view class='icon' style="background:{{item.color}}">
+              <text class='iconfont {{item.icon}}'></text>
+            </view>
+            {{item.title}}
+            <view class='selectOPtions'>
+                <text wx:for='{{item.options}}' 
+                      wx:key="{{index_}}" 
+                      wx:for-index="index_"
+                      wx:if="{{item_.flag}}"
+                      wx:for-item="item_">{{item_.value}}<block>{{' '}}</block></text>
+            </view>
+            <view class='jiantou'>
+                <block wx:if="{{!selectCircleData[index].ctrShow}}">
+                    <text class='iconfont icon-xiajiantou'></text>
+                </block>
+                <block wx:if="{{selectCircleData[index].ctrShow}}">
+                    <text class='iconfont icon-shangjiantou'></text>
+                </block>
+            </view>
+        </view>
+            <view class='options' wx:if='{{selectCircleData[index].ctrShow}}'>
+              <view wx:for="{{item.options}}" 
+                    wx:for-item="items"
+                    wx:for-index="indexs"
+                    wx:key="{{indexs}}" 
+                    bindtap='checkOption'
+                    data-index='{{index}}'
+                    data-indexs="{{indexs}}"
+                    data-flag = '{{items.flag}}'
+                    class="{{items.flag?'checkeds':''}}">{{items.value}}</view> 
+            </view>
+        </view>
+
+        <view class='select' bindtap='selfOptionTags'>
+            <view class='title'>
+                <view class='icon' style="background:#1daca9">
+                    <text class='iconfont icon-jia'></text>
+                </view>
+                 自定义
+                 <view class='selectOPtions'>
+                    <text>{{selfValueTag}}</text>
+                   </view>
+                  <view class='jiantou'>
+                    <text class='iconfont icon-xiajiantou'></text>
+                  </view>
+            </view>
+        </view>   
+      </view>
+      
+     <view class='selfTags' wx:if='{{showSelfTags}}'>
+          <view class='headTags'>
+              <text>填写自定义标签</text>
+          </view>
+          <view class='inputSelf'>
+                <input placeholder="最多输入十五个字"
+                        placeholder-style="{{holdplace}}"
+                        value='{{selfValueTag}}'
+                        bindinput="bindKeyInput"  />
+           </view>
+          <view class='selfBtn'>
+               <view bindtap="sureSelf" class='cancle' data-values='{{false}}'>取消</view>   
+               <view bindtap="sureSelf" data-values='{{true}}'>确定</view>   
+          </view>
+      </view>
+    <view  class='nextStep'>
+        <button
+            wx:if="{{showNextsteps}}"
+            type="primary"
+            class='{{disabled ? "disabledSelect":""}}'
+            disabled="{{disabled}}"
+            data-next='next'
+            bindtap="nextSteps">
+            下一步
+        </button>
+        <button
+           wx:if="{{!showNextsteps}}"
+            type="primary"
+            class='{{disabled ? "disabledSelect":""}}'
+            disabled="{{disabled}}"
+            data-next='save'
+            bindtap="nextSteps">
+            保存
+        </button>
+    </view>
+</view>
+</view>

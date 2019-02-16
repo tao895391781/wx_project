@@ -1,0 +1,14 @@
+<!--miniprogram/pages/settingPage/changeHeadImg/changeheadImg.wxml-->
+<view class='changeHeadImg'>
+      <view class='uploadImg'>
+          <text>上传本地图片<text>(推荐尺寸：750 x 375)</text>\n</text>
+          <view class='addImg' bindtap='loadImg'>
+              <text class='iconfont icon-plus' wx:if="{{headImg == ''}}"></text>
+              <image src='{{headImg}}' mode='scaleToFill' wx:if="{{headImg != ''}}"></image>
+          </view>
+
+      </view>
+      <view class='introImg'>
+          <text>推荐图片\n</text>
+      </view>
+</view>

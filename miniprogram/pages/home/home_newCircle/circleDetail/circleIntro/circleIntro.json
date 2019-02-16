@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "圈子详情",
+  "usingComponents":{
+    "addMedia":"../../../../../components/addMedia/addMedia"
+  }
+}

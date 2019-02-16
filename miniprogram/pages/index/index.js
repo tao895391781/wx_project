@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    showScope:false,
   },
 
   /**
@@ -14,12 +15,12 @@ Page({
   onLoad: function (options) {
     //云函数
     let that = this;
-    wx.cloud.callFunction({
-      name: 'login',
-      complete: res => {
-        console.log('callFunction test              result: ', res)
-      }
-    });
+    // wx.cloud.callFunction({
+    //   name: 'login',
+    //   complete: res => {
+    //     console.log(res);
+    //   }
+    // });
     //判断用户是否授权
     wx.getSetting({
       success(res) {
@@ -30,6 +31,9 @@ Page({
             url: '../../pages/home/home'
           })
         }else{
+          that.setData({
+            showScope:true
+          })
           wx.openSetting({
             success(res) {
               console.log(res.authSetting);
@@ -93,8 +97,15 @@ Page({
   },
   bindGetUserInfo(e) {
     console.log(e.detail.userInfo);
+    if (e.detail.userInfo){
+      let userInfo = {
+        "nickName": e.detail.userInfo.nickName,
+        "avatarUrl": encodeURIComponent(e.detail.userInfo.avatarUrl)
+      }
+      wx.setStorageSync('userInfo', JSON.stringify(userInfo))
       wx.switchTab({
         url: '../../pages/home/home'
       })
+    }  
     }
 })

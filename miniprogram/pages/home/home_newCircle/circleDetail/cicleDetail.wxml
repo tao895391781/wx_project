@@ -1,0 +1,90 @@
+<!-- created BY tll to  2018/12/12 -->
+<import src="../../../../template/showToast/showToast.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
+<view class='circleDetail'>
+  <view class='header'>
+      <button class='shareTofriend' open-type='share'><text class='iconfont icon-jinbi1'></text>分享给好友</button>
+      <view class='changHeader' bindtap='changeheadImg'><text class='iconfont icon-jichutubiao-XC-zhaoxiangji'></text>修改头图</view>
+      <image src='{{circleInfo.headImg}}' mode='scaleToFill'  bindtap='preImg' data-url='{{circleInfo.headImg}}'></image>
+  </view>
+  <view class='circleName bgc'>
+      <text class='title'>{{circleInfo.circleName}}</text>
+      <text class='iconfont icon-xiugaimima' bindtap='changeCircleName'  data-type='name'></text>
+      <view class='cardInfo'>
+        <view class='headImg'><image src="{{userInfo.avatarUrl}}"></image></view>
+        <text class='nickName'>{{userInfo.nickName}}</text>
+        <text>等1人已参加</text>
+        <text class='pad'>|</text>
+        <text>0次打卡</text>
+      </view>
+  </view>
+  <view class='circleIntro bgc'>
+      <view class='circleHead'>
+          <text>圈子介绍  </text><text class='iconfont icon-xiugaimima'  
+                   bindtap='goCircleIntroPage' wx:if='{{circleIntro.circleInfo.length != 0}}'></text>
+      </view>
+          <view class='addContent' wx:if='{{circleIntro.circleInfo.length == 0}}' 
+            bindtap='goCircleIntroPage'
+          >
+              <text class='iconfont icon-jia2'></text>
+              <text>丰富圈子的介绍，让更多人了解你的圈子</text>
+          </view>
+      <view class='showcircleIntro' wx:if='{{circleIntro.circleInfo.length != 0}}'>
+          <view wx:for='{{circleInfo.circleIntro}}' wx:key="{{index}}">
+              <view wx:if="{{item.type == 'text'}}" class='text'>
+                  {{item.content}}
+              </view>
+              <view  wx:if="{{item.type == 'video'}}" class='video'>
+                  <video src = '{{item.content}}'></video>
+              </view>
+              <view wx:if="{{item.type == 'img'}}" class='img'>
+                  <image src='{{item.content}}' mode='aspectFit' 
+                  bindtap='preImg' data-url='{{item.content}}'></image>
+              </view>
+              <view wx:if="{{item.type == 'record'}}" class='record'>
+                  <playAudio audioData="{{item}}"></playAudio>
+              </view>
+          </view>  
+      </view>
+  </view>
+  <view class='circleIntro bgc' bindtap='circleHostIntro'>
+      <view class='circleHead'>
+          <text>圈主介绍</text>
+      </view>
+      <view class='addContent' wx:if="{{circleInfo.circleHostIntro.introText==''}}">
+          <text class='iconfont icon-jia2'></text>
+          <text>完善圈主介绍，让成员认识你</text>
+      </view>
+      <view class='circleHostIntros' wx:if="{{circleInfo.circleHostIntro.introText!=''}}">
+          {{circleInfo.circleHostIntro.introText}}
+      </view>
+  </view>
+  <view class='circleType bgc' bindtap='changeCircleName' data-type='tags'>
+      <view>
+          <text class='title'>圈子类型</text>
+          <text wx:for="{{circleType}}" class='type' wx:key='index'>{{item}}<text wx:if="{{index!=0}}">,</text>
+          </text>
+      </view>
+      <text class='icon-iconfontjiantou2 iconfont'></text>
+  </view>
+  <view class='circleType bgc'>
+      <view>
+          <text class='title'>设置报名费与分销租金\n</text>
+          <text>报名费是成员加入时需缴费的费用，归圈主所有</text>
+      </view>
+      <text class='icon-iconfontjiantou2 iconfont'></text>
+  </view>
+  <view class='circleType bgc'>
+      <view>
+          <text class='title'>创建契约金\n</text>
+          <text>圈主设置目标。参与者上交契约金，完成打卡分奖金</text>
+      </view>
+        <text class='icon-iconfontjiantou2 iconfont'></text>
+  </view>
+
+  <view class='blank'></view>
+</view>
+<view class='shareAndGoDetail bgc'>
+    <view class='share'>分享给好友</view>
+    <view class='goDetail'>去打卡详情页</view>
+</view>

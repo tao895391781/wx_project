@@ -1,39 +1,47 @@
 <!--miniprogram/pages/find/find.wxml-->
-<view class='findContain'>
-    <view class='search'>
-        <text class='iconfont icon-sousuo'></text>
-        搜索
-    </view>
-    <swiper indicator-dots='{{indicatorDots}}' 
-     autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
-     circular = "{{circular}}">
-        <swiper-item wx:for="{{imgUrls}}" wx:key="{{index}}">
-            <image src="{{item}}"></image>
-        </swiper-item>
-    </swiper>
-    <view class='findBlock'>
-        <view wx:for="{{findblock}}" wx:key='{{index}}'>
-          <view class='icon' style='background-color:{{item.color}}'>
-             <text class='iconfont {{item.icon}}'></text>
+  <view class='findContain'>
+      <view class='search'>
+          <text class='iconfont icon-sousuo'></text>
+          搜索
+      </view>
+      <swiper indicator-dots='{{indicatorDots}}' 
+      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+      circular = "{{circular}}">
+          <swiper-item wx:for="{{imgUrls}}" wx:key="{{index}}">
+              <image src="{{item}}"></image>
+          </swiper-item>
+      </swiper>
+      <view class='findBlock'>
+          <view wx:for="{{findblock}}" wx:key='{{index}}'>
+            <view class='icon' style='background-color:{{item.color}}'>
+              <text class='iconfont {{item.icon}}'></text>
+            </view>
+              <text>{{item.title}}</text>
           </view>
-            <text>{{item.title}}</text>
-        </view>
-    </view>
-    <!-- circle列表 -->
-    <view class='circleList'>
-        <view wx:for='{{circleList}}' wx:key='{{index}}'>
-          <view class='imgInfo'>
-              <image src='{{item.imgId}}'></image>
+      </view>
+      <!-- circle列表 -->
+      <view class='circleList'>
+          <view wx:for='{{circleList}}' wx:key='{{index}}' class='itemList'>
+            <view class='imgInfo'>
+                <image src='{{item.imgId}}'></image>
+            </view>
+            <view class='introInfo ellipsie' > 
+                <text class='title'>{{item.title}}</text>
+                <view>
+                    <text class='person'>{{item.howperson}}人参加</text>
+                    \t\t
+                    <text class='person'>{{item.howtimes}}次打卡</text>
+                </view>
+                <text class='desc'>{{item.descript}}</text>
+            </view>
           </view>
-          <view class='introInfo ellipsie' > 
-              <text class='title'>{{item.title}}</text>
-              <view>
-                  <text class='person'>{{item.howperson}}人参加</text>
-                  \t\t
-                  <text class='person'>{{item.howtimes}}次打卡</text>
+          <block wx:if='{{showLoading}}'>
+              <view class='loading'>
+                  <view class='load' animation="{{animationData}}">
+                    <text class='iconfont icon-jiazai'></text>
+                  </view>
+                  <text>正在加载</text>
               </view>
-              <text class='desc'>{{item.descript}}</text>
-          </view>
-        </view>
-    </view>
-</view>
+          </block>
+      </view>
+  </view>

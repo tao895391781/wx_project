@@ -1,0 +1,14 @@
+<!--miniprogram/pages/showtoast/showtoast.wxml-->
+<template name="showToast"> 
+  <block wx:if="{{showToast.isShow? showToast.isShow: false}}">
+    <view class="toast-bg" wx:if="{{showToast.mask==false? false : true}}"></view>
+    <view class="toast-center">
+      <view class="toast">
+      <view class='icon' wx:if="{{showToast.icon}}">
+        <text class='iconfont {{showToast.icon}}'></text>
+      </view>
+        <text class="toast-text">{{showToast.title}}</text>
+      </view>
+    </view>
+  </block>
+</template>

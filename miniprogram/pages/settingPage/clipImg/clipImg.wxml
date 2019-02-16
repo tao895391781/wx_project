@@ -1,0 +1,29 @@
+<!--miniprogram/pages/settingPage/clipImg/clipImg.wxml-->
+<view class='clipImg'>
+    <view class='img'>
+    <view class='canva' id='canvasBox'  style="width:{{imgW}}rpx;height:{{imgH}}rpx;">
+      <canvas canvas-id='myCanvas'  
+    style="width:{{imgW}}rpx;height:{{imgH}}rpx;"></canvas>
+        <image src='{{imgurl}}'></image>
+        <movable-area class='movearea'>
+           <movable-view
+              id='rectMove' 
+              style="width:{{rectMoveW}}rpx;height:{{rectMoveW / 2}}rpx;top:{{top}}px;left:{{left}}px"
+              direction="all"
+              bindchange='touch'
+              scale-value='{{scaleValue}}'
+              scale = '{{true}}'
+              scale-max="1"
+              scale-min='.5'
+              >
+               <view wx:for='{{viewNum}}' wx:key="{{index}}" 
+               class="itemview {{index % 3 ==0?'borderLs':''}} {{index > 5? 'borderBs':''}}"></view>
+            </movable-view>
+        </movable-area>
+    </view>
+    </view>
+    <view class='confirm'>
+        <view class='left' bindtap='cancleClip'>取消</view>
+        <view class='right' bindtap='overClip'>完成</view>
+    </view>
+</view>

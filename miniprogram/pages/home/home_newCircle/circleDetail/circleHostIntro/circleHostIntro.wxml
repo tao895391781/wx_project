@@ -1,0 +1,25 @@
+<!--miniprogram/pages/home/home_newCircle/circleDetail/circleHostIntro/circleHostIntro.wxml-->
+<view class='CircleHostIntro'>
+    <view class='editIntro'>
+        <text>圈主简介</text>
+        <textarea placeholder='请输入圈主简介' 
+        value="{{introText}}"
+        placeholder-class='placeholder_'
+        bindinput='inputIntroOver'
+        maxlength="{{maxtext}}"
+        ></textarea>
+        <text class='maxtext'>{{inputLength}}/{{maxtext}}</text>
+    </view> 
+    <view class='editIntro wxNum'>
+          <text>圈主微信号\n</text>
+          <text class='whiteWX'>填写圈主微信号，有助于让学员找到您</text>
+          <view class='input'>
+              <input placeholder='请输入微信号' 
+                    placeholder-class='inputPlace' 
+                    bindinput='inputwxOver'
+                    value="{{wxNum}}"
+              ></input>
+          </view>
+          <button bindtap='saveCircleIntro'>保存</button>
+    </view>
+</view>

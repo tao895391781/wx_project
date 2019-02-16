@@ -1,0 +1,104 @@
+<!--miniprogram/components/addMedia.wxml-->
+<view class='content' wx:for="{{mediaContents}}" wx:key="{{index}}">
+<!-- 文字-->
+    <view wx:if="{{item.type == 'text'}}" class='text'>
+        <view class='header'>
+            <text class='T1'>文字</text>
+            <text class='iconfont icon-arrow2t T2 {{index != 0 ? "active_to_top":""}}'
+            bindtap='moveToTop' data-index = '{{index}}'
+            ></text>
+            <text class='iconfont icon-jiantou-copy T3 {{index != mediaContents.length-1 ? "active_to_top":""}}' bindtap='moveToBottom' data-index = '{{index}}'></text>
+            <text class='iconfont icon-guanbi- T4' bindtap='deleteIntro' data-index = '{{index}}'></text>
+        </view>
+          <view class='contents'>
+              <textarea  placeholder='请输入圈子介绍'                                            placeholder-class='placeholderC' 
+                value='{{item.content}}'
+                bindinput='textBlur' 
+                data-index='{{index}}'>
+              </textarea>
+          </view>
+    </view>
+    <!-- 图片 -->
+    <view wx:if="{{item.type == 'img'}}" class='img'>
+       <view class='header'>
+            <text class='T1'>图片</text>
+            <text class='iconfont icon-arrow2t T2 {{index != 0 ? "active_to_top":""}}'
+            bindtap='moveToTop' data-index = '{{index}}'
+            ></text>
+            <text class='iconfont icon-jiantou-copy T3 {{index != mediaContents.length-1 ? "active_to_top":""}}' bindtap='moveToBottom' data-index = '{{index}}'></text>
+            <text class='iconfont icon-guanbi- T4' bindtap='deleteIntro' data-index = '{{index}}'></text>
+        </view>
+        <view class='contents'>
+            <image src='{{item.content}}' mode='aspectFit' 
+            bindtap='changeImg' 
+            bindload='imgloadover'
+            data-index='{{index}}'></image>
+        </view> 
+    </view>
+    <!-- 录音 -->
+    <view wx:if="{{item.type == 'record'}}" class='record'>
+        <view class='header'>
+            <text class='T1'>音频</text>
+            <text class='iconfont icon-arrow2t T2 {{index != 0 ? "active_to_top":""}}'
+            bindtap='moveToTop' data-index = '{{index}}'
+            ></text>
+            <text class='iconfont icon-jiantou-copy T3 {{index != mediaContents.length-1 ? "active_to_top":""}}' bindtap='moveToBottom' data-index = '{{index}}'></text>
+            <text class='iconfont icon-guanbi- T4' bindtap='deleteIntro' data-index = '{{index}}'></text>
+        </view>
+        <!-- 播放音频组件 -->
+        <playAudio audioData="{{item}}"></playAudio>
+    </view>
+    <!-- 视频 -->
+    <view wx:if="{{item.type == 'video'}}" class='video'>
+         <view class='header'>
+            <text class='T1'>视频</text>
+            <text class='iconfont icon-arrow2t T2 {{index != 0 ? "active_to_top":""}}'
+            bindtap='moveToTop' data-index = '{{index}}'
+            ></text>
+            <text class='iconfont icon-jiantou-copy T3 {{index != mediaContents.length-1 ? "active_to_top":""}}' bindtap='moveToBottom' data-index = '{{index}}'></text>
+            <text class='iconfont icon-guanbi- T4' bindtap='deleteIntro' data-index = '{{index}}'></text>
+        </view>
+        <video src = '{{item.content}}'></video>
+    </view>
+</view>
+<!-- 添加录音 -->
+    <view class='recording' wx:if="{{showRecording}}">
+          <text class='iconfont icon-guanbi close' bindtap='closeRecord'></text>
+          <view class='time'>
+              <text class='iconfont icon-luyin1 point' 
+                animation='{{timePointAnimation}}'></text><text>{{setTimes}} </text>
+          </view>
+      <view class='recordRight'>
+          <view class='ctrPlayPause'>
+             <block wx:if="{{!showPlay}}"> 
+                  <text class='iconfont icon-luyin1-copy pause' bindtap='pauseRecord' data-status='play'></text>
+              </block>
+              <block wx:if="{{showPlay}}"> 
+                  <text class='iconfont icon-zanting1-copy play' bindtap='pauseRecord' data-status='pause'></text>
+              </block>
+          </view>
+           <text class='over' bindtap='completeRecord'>完成</text>
+      </view>
+    </view>
+<!-- 结束 -->
+<view class='addContent'>
+      <text class='addhText'>开始添加内容:\n</text>
+      <view class='addType'>
+          <view class='mainColor' bindtap='addMediaContent' data-type='text'>
+              <text class='iconfont icon-wenzi1'>\n</text>
+              <text class='textC'>文字</text>
+          </view>
+          <view class='mainColor' bindtap='addMediaContent' data-type='img'>
+              <text class='iconfont icon-tupian'>\n</text>
+              <text class='textC'>图片</text>
+          </view>
+          <view class='mainColor' bindtap='addMediaContent' data-type='record'>
+              <text class='iconfont icon-luyin'>\n</text>
+              <text class='textC'>录音</text>
+          </view>
+          <view class='mainColor' bindtap='addMediaContent' data-type='video'>
+              <text class='iconfont icon-shipin2'>\n</text>
+              <text class='textC'>视频</text>
+          </view>
+      </view>
+</view>

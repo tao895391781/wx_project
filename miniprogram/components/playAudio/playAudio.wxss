@@ -1,0 +1,70 @@
+/* miniprogram/components/playAudio/playAudio.wxss */
+@import '../../style/iconfont.wxss';
+@import '../../style/common.wxss';
+ .audio{
+  border: 1px solid #eee;
+  padding: 30rpx;
+  background: #fcfcfc;
+  display: -webkit-flex;
+  display: flex;
+}
+ .audio .playBtn{
+  width: 70rpx;
+  height: 70rpx;
+  background:#1daca9;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 70rpx;
+  color: #fff;
+  border:8rpx solid #fff;
+}
+ .audio .audioCtr{
+  flex:1;
+  padding-left: 30rpx;
+}
+.audio .audioCtr .headText{
+  font-size: 26rpx;
+  color: #333;
+}
+.audio .audioCtr .ctr {
+  display: -webkit-flex;
+  display: flex;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+ .audio .audioCtr .ctr text{
+  display: inline-block;
+  color: #666;
+  font-size: 20rpx;
+  width:3em;
+}
+.audio .audioCtr .ctr .progress{
+  display: inline-block;
+  flex:1;
+  background: #ddd;
+  height:6rpx;
+  margin: 23rpx 30rpx;
+  position: relative;
+}
+.audio .audioCtr .ctr .progress .playprogress{
+  position: absolute;
+  height: 100%;
+  width:0;
+  left:0;
+  top:0;
+  background: #d33a31;
+}
+.audio .audioCtr .ctr .progress .playprogress .pointCtr{
+  position: absolute;
+  height:6rpx;
+  width: 6rpx;
+  top:-10rpx;
+  right:0;  
+  border:10rpx solid #fff;
+  background: #d33a31;
+  border-radius: 50%;
+}
+.audio .playBtn text{
+  font-size: 50rpx;
+  
+}

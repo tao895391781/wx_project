@@ -1,0 +1,138 @@
+/* miniprogram/components/addMedia.wxss */
+@import '../../style/iconfont.wxss';
+@import '../../style/common.wxss';
+.addContent{
+  width: 100%;
+  margin-top: 60rpx;
+}
+.addContent .addhText{
+  color: #555;
+  font-size: 34rpx;
+  padding-left: 30rpx;
+}
+.addContent .addType{
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50rpx;
+}
+.addContent .addType view{
+  width: 25%;
+  text-align: center;
+  
+}
+.addContent .addType view .textC{
+  font-size: 30rpx;
+  color:#9e9e9e;
+}
+.addContent .addType view .iconfont{
+  font-size: 50rpx;
+}
+.content{
+  width: 92%;
+  margin: 40rpx auto;
+  /* border: 1px solid #eee; */
+  overflow: hidden;
+}
+
+.content>view>.header{
+  height:90rpx;
+  line-height: 90rpx; 
+
+}
+.content>view>.header .active_to_top{
+  color: red;
+}
+.content>view>view>.T1,.content>view>view>.T2,.content>view>view>.T3{
+  padding: 0 20rpx;
+}
+.content>view>view>.T4{
+  float: right;
+}
+.content>view>view>text{
+  font-size: 32rpx;
+}
+.content>view>view>.iconfont{
+  font-size: 40rpx;
+  color: #666;
+}
+.content .text .contents{
+  width: 92%;
+  margin: 0 auto;
+}
+.content .text .contents textarea{
+  width: 100%;
+  height: 240rpx;
+  font-size: 32rpx;
+}
+.placeholderC{
+  color: #8e8e8e;
+  font-size: 30rpx;
+}
+.content .img .contents  image{
+  width: 98%;
+  margin-left: 2%;
+}
+.recording{
+  width: 92%;
+  border:4rpx solid #e4e4e4;
+  border-radius: 18rpx;
+  height: 140rpx;
+  line-height: 140rpx;
+  background: #fdfdfd;
+  margin: 60rpx auto 0;
+  color: #ccc;
+  }
+.recording .close{
+  font-size: 45rpx;
+  padding: 0 35rpx;
+  color: #b2b2b2;
+}
+.recording .point{
+  font-size: 45rpx;
+  padding-right:5rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+.recording .time{
+  padding-left: 30rpx;
+  border-left: 2rpx solid #cccc;
+  color: #ff3e44;
+  display: inline-block;
+  height:60rpx;
+  line-height: 60rpx;
+
+}
+.recording .recordRight{
+  float: right;
+}
+.recording .over{
+  float: left;
+  margin: 0 30rpx;
+  font-size: 35rpx;
+  color: #1daca9;
+}
+.recording .ctrPlayPause{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx 0;
+  border-radius: 50%;
+  float:left;
+  border: 8rpx solid #f3f3f3;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+}
+.recording .ctrPlayPause .iconfont{
+  font-size: 50rpx;
+  color: #ff3e44;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.content video{
+  width: 98%;
+  margin-left: 2%; 
+}

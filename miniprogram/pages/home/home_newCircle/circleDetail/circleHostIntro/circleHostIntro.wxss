@@ -1,0 +1,69 @@
+/* miniprogram/pages/home/home_newCircle/circleDetail/circleHostIntro/circleHostIntro.wxss */
+page{
+  height: 100%;
+}
+.CircleHostIntro{
+  height: 100%;
+  background: #f2f2f2;
+  overflow: hidden;
+}
+.CircleHostIntro .editIntro{
+  background: #fff;
+  margin: 20rpx 0;
+  position: relative;
+  overflow: hidden;
+}
+.CircleHostIntro .editIntro text{
+  font-size: 32rpx;
+  padding: 30rpx 40rpx;
+  display: inline-block;
+}
+.CircleHostIntro .editIntro textarea{
+  width: 90%;
+  margin: 0 5%;
+  font-size: 30rpx;
+}
+.CircleHostIntro .editIntro .maxtext{
+  position: absolute;
+  right: 0;
+  bottom:0;
+  padding:0 30rpx 30rpx 0;
+  font-size: 30rpx;
+  color:#666;
+}
+.placeholder_{
+  font-size: 30rpx;
+  color: #9e9e9e;
+}
+.CircleHostIntro .editIntro .whiteWX{
+  padding-top:0;
+  color: #9e9e9e;
+  font-size: 32rpx;
+}
+.CircleHostIntro .editIntro .input{
+  width: 50%;
+  margin-left: 5%;
+  border:1px solid #eee;
+  height: 70rpx;
+  border-radius: 6rpx;
+}
+.CircleHostIntro .editIntro .input input{
+  width: 100%;
+  height: 100%;
+  font-size: 30rpx;
+  padding-left:20rpx;
+}
+.inputPlace{
+  font-size: 30rpx;
+
+}
+.CircleHostIntro .editIntro button{
+  width: 70%;
+  margin:120rpx auto 0;
+  color: #fff;
+  background: #1daca9;
+  letter-spacing: 3rpx;
+}
+.CircleHostIntro .wxNum{
+  padding-bottom: 60rpx;
+}
